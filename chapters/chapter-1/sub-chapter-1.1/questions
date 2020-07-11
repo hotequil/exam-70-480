@@ -1,0 +1,24 @@
+Which of the following elements aren’t introduced in HTML5?
+A. <article>
+B. <footer>
+C. <hgroup>
+D. <input> X
+
+Which element(s) does the <hgroup> element contain?
+A. <h1> to <h6> X
+B. <header>
+C. <nav>
+D. All of the above
+
+Which HTML5 element would you use to organize content so that the page maximizes
+a search engine’s algorithm?
+A. <div id=”CompanyNews”>
+B. <header>Company News</header>
+C. <article>Company News</article> X
+D. All of the above
+
+Which HTML5 element should you use to create a more structured layout?
+A. <div>
+B. <p>
+C. <table> X
+D. <form>
