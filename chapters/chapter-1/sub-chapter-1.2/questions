@@ -1,0 +1,52 @@
+1. Which of the following JavaScript methods can’t be used to select an element in the
+DOM?
+A. getElementById
+B. querySelector
+C. getElementByClassName
+D. queryAll X
+
+2. Which line of JavaScript successfully retrieves only the image element with the ID
+myDog from the following HTML? Choose all that apply.
+<form>
+    <div id="main" class="mainStyle">
+        <p id="dogs">
+        This is a web page about dogs. Here is my dog picture:
+            <img src="dog.jpg" id="myDog" class="thumb"/>
+            Here is a picture of my friend’s dog:
+            <img src="dog.jpg" id="myfriendsDog" class="thumb"/>
+        </p>
+    </div>
+</form>
+A. document.getElementbyId(“myDog”); X
+B. <p>.getChildNode(“img”);
+C. document.getElementbyId(“dogs).querySelector (“thumb”);
+D. document.querySelectorAll(“thumb”);
+
+3.To hide an element in the DOM and still be able to add it back later, what should you
+do?
+A. Nothing, because the DOM is always available in a static form.
+B. Keep a reference to the removed node to be able to add it back. X
+C. Call the document.restoreNodes method.
+D. You can’t add an element back after it’s removed.
+
+4.When implementing the HTML5 video element, how do you ensure that the rendering
+of the element can function in different browsers?
+A. You need to do nothing, because HTML5 is now a standard specification.
+B. Specify all the source video types in the src attribute of the video element.
+C. Include the <source> element for each video type so that each browser can play
+the version that it supports. X
+D. Include the <object> element for each video type so that the browser can play the
+version that it supports.
+
+5. When drawing on the HTML5 <canvas> element, what method is used on the context
+to begin drawing at a new point?
+A. moveTo
+B. lineAt
+C. beginPath X
+D. stroke
+
+6. When performance is critical for an HTML5 graphics application, what should you use?
+A. <canvas> using a declarative syntax to create the graphics
+B. <svg> using a declarative syntax to create the graphics
+C. <canvas> using JavaScript to create the graphics X
+D. <svg> and <canvas> combination to leverage the best performance of both

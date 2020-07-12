@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Write code that interacts with UI controls</title>
+        <style>
+            canvas {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="outerDiv">
+            <p class="mainPara">Main Paragraph</p>
+            <ul>
+                <li>First List Item</li>
+                <li>Second List Item</li>
+                <li>Third List Item</li>
+                <li>Fourth List Item</li>
+            </ul>
+            <div id="innerDiv">
+                <p class="subPara" id='P1'>Paragraph 1</p>
+                <p class="subPara" id='P2'>Paragraph 2</p>
+                <p class="subPara" id='P3'>Paragraph 3</p>
+                <p class="subPara" id='P4'>Paragraph 4</p>
+            </div>
+            <table>
+                <tr>
+                    <td>Row 1
+                    </td>
+                </tr>
+                <tr>
+                    <td>Row 2
+                    </td>
+                </tr>
+                <tr>
+                    <td>Row 3
+                    </td>
+                </tr>
+                <tr>
+                    <td>Row 4
+                    </td>
+                </tr>
+                <tr>
+                    <td>Row 5
+                    </td>
+                </tr>
+            </table>
+            <input type="text"/><input type="submit" value="Submit"/>
+            <div>
+                <video src="mov_bbb.mp4" controls poster="./github-image.svg" height="400" width="600">
+    <!--                <source src="..." type="video/ogg"/>-->
+    <!--                <source src="..." type="audio/mp4"/>-->
+                    <object>
+                        <p>Video is not supported by this browser.</p>
+                    </object>
+                </video>
+            </div>
+            <div>
+                <video id="myVideo" src="mov_bbb.mp4" poster="./github-image.svg" height="400" width="600">
+                    <span>Video is not supported by this browser.</span>
+                </video>
+                <button type="button" onclick="pause()">pause</button>
+                <button type="button" onclick="start()">play</button>
+            </div>
+            <div>
+                <audio controls>
+                    <source src="horse.mp3" type="audio/mp3"/>
+<!--                    <source src="horse.ogg" type="audio/ogg"/>-->
+                    <p>Your browser does not support HTML5 audio.</p>
+                </audio>
+            </div>
+            <div>
+                <canvas id="drawingSurface" width="600" height="400">
+                    Your browser does not support HTML5.
+                </canvas>
+            </div>
+        </div>
+        <div>
+            <svg>
+                <circle id="Circle" cx="50" cy="50" r="50" fill="green" onmouseover="Red(evt)" onmouseout="Green(evt)"/>
+            </svg>
+        </div>
+        <div>
+            <svg height="200">
+                <rect id="lightStandard" x="100" y="0" width="60" height="200" fill="black"/>
+                <circle id="redLight" cx="129" cy="45" r="25" fill="red"/>
+                <circle id="amberLight" cx="129" cy="105" r="25" fill="yellow"/>
+                <circle id="greenLight" cx="129" cy="165" r="25" fill="green"/>
+            </svg>
+        </div>
+        <div>
+            <svg height="300">
+                <polygon points="10,35 30,35 10,85 100,85, 70,35,100,35" fill="purple"/>
+                <polyline points="10,150 30,170 50,132 62,196 78,165 96,170" style="stroke:orange; fill:none; stroke-width:5;"/>
+                <line x1="150" y1="100" x2="150" y2="150" style="stroke:blue;stroke-width:3"/>
+                <ellipse cx="250" cy="150" rx="30" ry="55" fill="green"/>
+                <text x="10" y="20" style="stroke: black;stroke-width:1;">Examples of SVG Shapes and Text</text>
+            </svg>
+        </div>
+        <script>
+                let divOuter = document.getElementById("outerDiv");
+                console.log(divOuter.innerHTML);
+
+                let paragrafhs = document.getElementsByTagName("p");
+                console.log(paragrafhs);
+
+                let subPara = document.getElementsByClassName("subPara");
+                console.log(subPara);
+
+                // let innerDiv = document.getElementById("innerDiv");
+                // console.log(innerDiv.innerHTML);
+                // document.removeChild(innerDiv);
+                // let afterRemoveInnerDiv = document.getElementById("innerDiv");
+                // console.log(afterRemoveInnerDiv);
+
+                // let newArticle = document.createElement("article");
+                // newArticle.innerText = "My new <article> element";
+                // divOuter.appendChild(newArticle);
+
+                let newArticle = document.getElementById("outerDiv")
+                                        .insertBefore(
+                    document.createElement("article"),
+                    document.getElementById("innerDiv"));
+
+                newArticle.innerText = "My new <article> element";
+
+                let innerDiv = document.getElementById("innerDiv");
+                let p = innerDiv.removeChild(document.getElementById("P1"));
+
+                let myVideo = document.querySelector("#myVideo");
+
+                function pause() {
+                    myVideo.pause();
+                };
+
+                function start() {
+                    myVideo.play();
+                };
+
+                var drawingSurface = document.getElementById("drawingSurface");
+                var ctxt = drawingSurface.getContext("2d");
+
+                ctxt.beginPath();
+                ctxt.lineWidth = 5;
+                ctxt.strokeStyle = '#000';
+                ctxt.moveTo(10, 10);
+                ctxt.lineTo(30, 10);
+                ctxt.lineTo(300, 380);
+                ctxt.lineTo(500, 300);
+                ctxt.lineTo(580, 200);
+                ctxt.stroke();
+
+                ctxt.beginPath();
+                ctxt.arc(150,100,75,0,2 * Math.PI, false);
+                ctxt.lineWidth = 25;
+                ctxt.strokeStyle = '#0f0';
+                ctxt.stroke();
+
+                ctxt.beginPath();
+                ctxt.arc(450, 100, 75, 1.5 * Math.PI, 2 * Math.PI, false);
+                ctxt.lineWidth = 25;
+                ctxt.strokeStyle = 'blue';
+                ctxt.stroke();
+
+                ctxt.beginPath();
+                ctxt.arc(150, 300, 75, 1 * Math.PI, 1.5 * Math.PI, false);
+                ctxt.lineWidth = 25;
+                ctxt.strokeStyle = '#0ff';
+                ctxt.stroke();
+
+                ctxt.beginPath();
+                ctxt.arc(450, 300, 75, .5 * Math.PI, 1 * Math.PI, false);
+                ctxt.lineWidth = 25;
+                ctxt.strokeStyle = '#f00';
+                ctxt.stroke();
+
+                ctxt.beginPath();
+                ctxt.moveTo(10,380);
+                ctxt.quadraticCurveTo(300,-250,580,380);
+                ctxt.lineWidth = 25;
+                ctxt.strokeStyle = '#f00';
+                ctxt.stroke();
+
+                ctxt.beginPath();
+                ctxt.moveTo(125, 20);
+                ctxt.bezierCurveTo(0, 200, 300, 300, 50, 400);
+                ctxt.lineWidth = 5;
+                ctxt.strokeStyle = '#f00';
+                ctxt.stroke();
+
+                ctxt.beginPath();
+                ctxt.arc(300, 200, 75, 1.75 * Math.PI, 1.25 * Math.PI, false);
+                ctxt.lineTo(150, 125);
+                ctxt.quadraticCurveTo(300, 0, 450, 125);
+                ctxt.lineTo(353, 144);
+                ctxt.strokeStyle = "blue";
+                ctxt.lineCap = "round";
+                ctxt.lineWidth = 10;
+                ctxt.stroke();
+
+                ctxt.beginPath();
+                ctxt.rect(300, 200, 150, 75);
+                ctxt.stroke();
+
+                ctxt.font = "24px arial";
+                ctxt.textAlign = "center";
+                ctxt.fillStyle = "black";
+                ctxt.fillText("5. Text with altered colored font Centered.", drawingSurface.width / 2, drawingSurface.height / 2);
+
+                function Red(evt) {
+                    var circle = evt.target;
+                    circle.setAttribute("style", "fill: red");
+                }
+
+                function Green(evt) {
+                    var circle = evt.target;
+                    circle.setAttribute("style", "fill: green");
+                }
+        </script>
+    </body>
+</html>
