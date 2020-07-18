@@ -1,0 +1,17 @@
+1. Absolute positioning positions an object relative to what?
+A. The top-left corner of the browser window.
+B. The top-left corner of its parent element. X
+C. Centered inside the window.
+D. Centered inside its parent element.
+
+2.Which transformation enables you to change the size of an element?
+A. rotate
+B. skew
+C. translate
+D. scale X
+
+3. Which syntax preserves the layout of the page when hiding an element in the DOM?
+A. display=’hidden’
+B. display=’inline’
+C. visibility=’none’
+D. visibility=’hidden’ X

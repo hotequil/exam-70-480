@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Apply styling to HTML elements programmatically</title>
+        <style>
+            img {
+                height: 150px;
+                width: 225px;
+            }
+
+            .rota{
+                transform: rotate(90deg);
+            }
+
+            .trans{
+                transform: translate(50px,0px);
+            }
+
+            .skew{
+                transform: skew(10deg, 10deg);
+            }
+
+            .scale{
+                transform: scale(1.5);
+            }
+
+            .some-transforms{
+                transform: rotate(90deg) translate(50px,0px) skew(10deg, 10deg) scale(1.5);
+            }
+
+            .hide{
+                display: none;
+            }
+        </style>
+        <script>
+            const showNext = (type) => {
+                const currentQuestion = document.querySelector("[data-question]:not(.hide)");
+
+                if(currentQuestion.dataset.question != "10"){
+                    const nextElement =  document.querySelector(`[data-question="${currentQuestion.dataset[`show${type}`]}"]`);
+
+                    currentQuestion.classList.add("hide");
+                    nextElement.classList.remove("hide");
+                };
+            };
+
+            window.onload = function () {
+                const top = document.getElementById("topText");
+                const left = document.getElementById("leftText");
+                const pos = document.getElementById("positioning");
+                const img1 = document.getElementById("orange1");
+                const img2 = document.getElementById("orange2");
+                const img3 = document.getElementById("orange3");
+                const img4 = document.getElementById("orange4");
+                const img5 = document.getElementById("orange5");
+                const img6 = document.getElementById("orange6");
+
+                img1.onclick = (event) => event.currentTarget.classList.toggle("rota");
+                img2.onclick = (event) => event.currentTarget.classList.toggle("trans");
+                img3.onclick = (event) => event.currentTarget.classList.toggle("skew");
+                img4.onclick = (event) => event.currentTarget.classList.toggle("scale");
+                img5.onclick = (event) => event.currentTarget.classList.toggle("some-transforms");
+
+                setInterval(() => {
+                    if(img6.style.display != "none") img6.style.display = "none";
+                    else img6.style.display = "";
+                }, 1000);
+
+                document.getElementById("btnPosition").onclick = () => {
+                    img2.style.position = pos.value;
+                    img2.style.left = left.value + "px";
+                    img2.style.top = top.value + "px";
+                };
+            };
+
+        </script>
+    </head>
+    <body>
+        <table style="width: 100%; border: 1px solid black;">
+            <tr>
+                <td style="vertical-align: top; width: 70%">
+                    <img id="orange1" src="orange.png"/>
+                    <img id="orange2" src="orange.png"/>
+                    <img id="orange3" src="orange.png"/>
+                    <img id="orange4" src="orange.png"/>
+                    <img id="orange5" src="orange.png"/>
+                    <img id="orange6" src="orange.png"/>
+                </td>
+                <td style="vertical-align: top;">
+                    <label for="leftText">Left:</label>
+                    <input type="text" id="leftText">
+
+                    <br>
+
+                    <label for="topText">Top:</label>
+                    <input type="text" id="topText">
+
+                    <br>
+
+                    <label for="positioning">Position:</label>
+                    <select id="positioning">
+                        <option>relative</option>
+                        <option>absolute</option>
+                    </select>
+
+                    <br>
+
+                    <input type="button" id="btnPosition" value="Update">
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>column1</th>
+                    <th>column2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="visibility: visible">
+                    <td>item1</td>
+                    <td>item2</td>
+                </tr>
+                <tr style="visibility: hidden">
+                    <td>item1</td>
+                    <td>item2</td>
+                </tr>
+                <tr style="visibility: collapse">
+                    <td>item1</td>
+                    <td>item2</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <div>
+                <h2 data-question="1" data-show-yes="2" data-show-no="3">Question1</h2>
+                <h2 class="hide" data-question="2" data-show-yes="4" data-show-no="5">Question2</h2>
+                <h2 class="hide" data-question="3" data-show-yes="6" data-show-no="7">Question3</h2>
+                <h2 class="hide" data-question="4" data-show-yes="9" data-show-no="8">Question4</h2>
+                <h2 class="hide" data-question="5" data-show-yes="8" data-show-no="9">Question5</h2>
+                <h2 class="hide" data-question="6" data-show-yes="9" data-show-no="8">Question6</h2>
+                <h2 class="hide" data-question="7" data-show-yes="8" data-show-no="9">Question7</h2>
+                <h2 class="hide" data-question="8" data-show-yes="10" data-show-no="10">Question8</h2>
+                <h2 class="hide" data-question="9" data-show-yes="10" data-show-no="10">Question9</h2>
+                <h2 class="hide" data-question="10">Question10</h2>
+            </div>
+            <div>
+                <button onclick="showNext('Yes')">Yes</button>
+                <button onclick="showNext('No')">No</button>
+            </div>
+        </div>
+    </body>
+</html>
