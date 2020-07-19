@@ -1,0 +1,29 @@
+1. When using the Web Storage API, where should you store data to ensure that it’s cleared when the user closes the browser?
+A. localStorage
+B. cookieStorage
+C. sessionStorage X
+D. A hidden input element
+
+2. What do you need to do to designate a page as available offline?
+A. Specify in JavaScript as document.offLine=true.
+B. Specify the manifest attribute on the form element.
+C. Specify the manifest attribute on the HTML element. X
+D. Tell users to switch to offline mode using their browser. No code is required.
+
+3. Which of the following aren’t valid sections of the AppCache manifest?
+A. Cache manifest
+B. Session manifest X
+C. Network manifest
+D. Fallback manifest
+
+4. Which event is fired by the AppCache object when the cache download is complete?
+A. oncached X
+B. onupdateready
+C. ondownloading
+D. onchecking
+
+5. When using the Geolocation API, how do you configure the ability to use cached data?
+A. Set the enableCache property to true on the PositionOptions object.
+B. Set the maximumAge property to a non-zero value on the PositionOptions object. X
+C. Set the timeout property of the PositionOptions object.
+D. Using the cache is always on to save bandwidth, so no configuration is required.

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Implement HTML5 APIs</title>
+        <style>
+            section {
+                margin-top: 16px;
+            }
+        </style>
+        <script>
+            window.onload = () => {
+                const areThereKeyAndValue = (key = inputKey.value, value = inputValue.value) => key && value;
+                const inputKey = document.querySelector("#toStorageKey");
+                const inputValue = document.querySelector("#toStorageValue");
+
+                document.getElementById("btnAdd").onclick = () => areThereKeyAndValue() ? localStorage.setItem(inputKey.value, inputValue.value) : null;
+
+                document.getElementById("btnRemove").onclick = () => localStorage.removeItem(inputKey.value);
+
+                document.getElementById("btnClear").onclick = () => localStorage.clear();
+
+                document.querySelectorAll("button").forEach(button => button.addEventListener("click", () => loadFromStorage(true)));
+
+                const loadFromStorage = (clearInputs = false) => {
+                    const tbody = document.querySelector("[data-tbody]");
+
+                    tbody.innerHTML = "";
+
+                    if(localStorage.length){
+                        for(let index = 0; index < localStorage.length; index++){
+                            const valueOfKey = localStorage.key(index);
+                            const valueOfValue = localStorage.getItem(valueOfKey);
+                            const tdKey = document.createElement("td");
+                            const tdValue = document.createElement("td");
+                            const tr = document.createElement("tr");
+
+                            tdKey.innerText = valueOfKey;
+                            tdValue.innerText = valueOfValue;
+
+                            tr.appendChild(tdKey);
+                            tr.appendChild(tdValue);
+                            tbody.appendChild(tr);
+                        };
+                    } else{
+                        const row = document.createElement("tr");
+                        const column = document.createElement("td");
+
+                        column.setAttribute("colspan", "2");
+                        column.innerText = "Sem conteúdo no momento";
+
+                        row.appendChild(column);
+                        tbody.appendChild(row);
+                    };
+
+                    if(clearInputs){
+                        inputKey.value = "";
+                        inputValue.value = "";
+                    };
+                };
+
+                const addPeopleObject = () => {
+                    const people = {
+                        name: "joao",
+                        age: 18
+                    };
+
+                    localStorage.setItem("people", JSON.stringify(people));
+                };
+
+                addPeopleObject();
+                loadFromStorage();
+
+                const geoLocation = window.navigator.geolocation;
+                const posSuccess = pos => {
+                    console.log(pos);
+                    document.querySelector("[data-type='lat']").textContent = `Latitude: ${pos.coords.latitude}`;
+                    document.querySelector("[data-type='long']").textContent = `Latitude: ${pos.coords.longitude}`;
+                };
+                const posError = err => document.querySelector("[data-type='error']").textContent = `codeMessage: ${err.code} / errorMessage: ${err.message}`;
+                const posOptions = {
+                    enableHighAccuracy: true,
+                    timeout: 4000
+                };
+
+                geoLocation.getCurrentPosition(posSuccess, posError, posOptions);
+                geoLocation.watchPosition(posSuccess, posError, posOptions);
+            };
+        </script>
+    </head>
+    <body>
+        <section>
+            <h2>Storage</h2>
+            <label for="toStorageKey">Key:</label>
+            <input type="text" id="toStorageKey"/>
+            <label for="toStorageValue">Value:</label>
+            <input type="text" id="toStorageValue"/><br/>
+        </section>
+        <section>
+            <button type="button" id="btnAdd">Add To Storage</button>
+            <button type="button" id="btnRemove">Remove from Storage</button>
+            <button type="button" id="btnClear">Clear Storage</button>
+        </section>
+        <div id="storage">
+            <p>Current Storage Contents</p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody data-tbody></tbody>
+        </table>
+        <section>
+            <h2>Geolocation</h2>
+            <span data-type="lat"></span>
+            <span data-type="long"></span>
+            <span data-type="error"></span>
+        </section>
+    </body>
+</html>
