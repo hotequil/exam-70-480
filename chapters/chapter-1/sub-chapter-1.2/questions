@@ -29,10 +29,8 @@ D. You can’t add an element back after it’s removed.
 4. When implementing the HTML5 video element, how do you ensure that the rendering of the element can function in different browsers?
 A. You need to do nothing, because HTML5 is now a standard specification.
 B. Specify all the source video types in the src attribute of the video element.
-C. Include the <source> element for each video type so that each browser can play
-the version that it supports. X
-D. Include the <object> element for each video type so that the browser can play the
-version that it supports.
+C. Include the <source> element for each video type so that each browser can play the version that it supports. X
+D. Include the <object> element for each video type so that the browser can play the version that it supports.
 
 5. When drawing on the HTML5 <canvas> element, what method is used on the context to begin drawing at a new point?
 A. moveTo

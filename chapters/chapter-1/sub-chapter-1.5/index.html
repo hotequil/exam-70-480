@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Establish the scope of objects and variables</title>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                border: 1px solid black;
+            }
+        </style>
+        <script>
+            //NÃO USE VAR, USE LET OU CONST PARA DECLARAR SUAS VARIÁVEIS <3
+
+            // let x, y, z;
+            // let a = 1, b = 2, c = 3;
+            // let d = 4;
+
+            var globalVar = "global";
+
+            console.log(this);
+
+            window.onload = function () {
+                var localVar = "local";
+                var num = 2;
+
+                document.getElementById("Div1").onclick = function () {
+                    var insideDiv1Click = "insideDiv1";
+                    alert(globalVar);
+                    alert(localVar);
+                    alert(insideDiv1Click);
+                    var num = 5;
+                    alert(num);
+                };
+
+                document.getElementById("Div2").onclick = function () {
+                    alert(globalVar);
+                    alert(localVar);
+                    alert(insideDiv1Click);
+                };
+
+                document.getElementById("Div3").onclick = function () {
+                    var insideDiv3 = "Div3";
+                    AFunction();
+                    BFunctionWithParam(insideDiv3);
+                };
+
+                console.log(this);
+                document.getElementById("Div4").onclick = function () {
+                    console.log(this);
+                };
+
+                function AFunction() {
+                    var x;
+                    alert(insideDiv3);
+                }
+
+                function BFunctionWithParam(p) {
+                    alert(p);
+                    alert(localVar);
+                }
+            }
+        </script>
+        <script>
+            class Calculate{
+                constructor(){}
+
+                static addition(a, b){
+                    return a + b;
+                }
+
+                static subtraction(a, b){
+                    return a - b;
+                }
+
+                static multiplication(a, b){
+                    return a * b;
+                }
+
+                static division(a, b){
+                    return a / b;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="Div1"></div>
+        <div id="Div2"></div>
+        <div id="Div3"></div>
+        <div id="Div4"></div>
+    </body>
+</html>
