@@ -1,0 +1,17 @@
+1. In JavaScript, which of the following isn’t a native object?
+A. Function
+B. Array
+C. Integer
+D. Person X
+
+2. Which of the following snippets shows the correct way to create a custom book object?
+A. var book = “Title: ‘My book about things’” + “Author: ‘Jane Doe’” + “ Pages: 400”;
+B. var book = {Title: “My book about things”, Author: “Jane Doe”, Pages: 400}; X
+C. var book = (Title= “My book about things”, Author= “Jane Doe”= Pages: 400);
+D. var book = new {Title: “My book about things”, Author: “Jane Doe”, Pages: 400};
+
+3. Inheritance is accomplished in JavaScript through the use of which construct?
+A. inherits keyword
+B. implements keyword
+C. this keyword
+D. Prototypes X

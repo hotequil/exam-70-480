@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create and implement objects and methods</title>
+        <style></style>
+        <script>
+            const squareValue = Math.sqrt(144); //Native object without instantiation
+            const listofPrimeNumbers = new Array(1, 2, 3, 5, 7, 11, 13, 17, 19, 23); //Native object that must be instantiated
+
+            const txt1 = "my word"; //literal form, this is a string (type), for use methods as replace, indexOf and others, is created an wrapper object in runtime
+            const txt2 = new String("my word"); //instantiated form, this is an object (type), is an object, then doesn't need create an wrapper object in runtime
+
+            const book = {
+                name: "Democracy: The God That Failed",
+                author: "Hans-Hermann Hoppe",
+                released: 2001,
+                currentPage: 36,
+                sayNameBook(){
+                    alert(this.name);
+                },
+                setPage(page){
+                    this.currentPage = page;
+                    alert(this.currentPage);
+                },
+                nextPage(){
+                    this.setPage(++this.currentPage)
+                },
+                previousPage(){
+                    this.setPage(--this.currentPage)
+                },
+            };
+
+            //you can pass props in function
+            function Book() {
+                this.name = "Democracy: The God That Failed";
+                this.author = "Hans-Hermann Hoppe";
+                this.released = 2001;
+                this.currentPage = 36;
+                this.sayNameBook = function(){
+                    alert(this.name);
+                };
+                this.setPage = function(page){
+                    this.currentPage = page;
+                    alert(this.currentPage);
+                };
+                this.nextPage = function(){
+                    this.setPage(++this.currentPage)
+                };
+                this.previousPage = function(){
+                    this.setPage(--this.currentPage)
+                };
+            };
+
+            class Book2{
+                //you can pass props in constructor
+                constructor(){
+                    this.name = "Democracy: The God That Failed";
+                    this.author = "Hans-Hermann Hoppe";
+                    this.released = 2001;
+                    this.currentPage = 36;
+                }
+
+                sayNameBook(){
+                    alert(this.name);
+                };
+
+                setPage(page){
+                    this.currentPage = page;
+                    alert(this.currentPage);
+                };
+
+                nextPage(){
+                    this.setPage(++this.currentPage)
+                };
+
+                previousPage(){
+                    this.setPage(--this.currentPage)
+                };
+            }
+
+            book.sayNameBook();
+
+            function Author(firstName, lastName, gender){
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.gender = gender;
+            }
+
+            Author.prototype = {
+                firstName: "",
+                lastName: "",
+                gender: "",
+                BookCount: 0
+            };
+
+            Array.prototype.alertItem = item => alert(item);
+
+            [].alertItem(10);
+
+            //inheriting
+            //created a new object with Book's prototype and added two new props to object
+            const popupBook = Object.create(Book.prototype,{ hasSound: {value:true},
+                showPopUp:{
+                    value: function showPop(){}
+                }
+            });
+
+            //copied Book's props and added two new prototypes
+            function PopUpBook(){
+                Book.call(this);
+            }
+
+            PopUpBook.prototype = Book.prototype;
+            PopUpBook.prototype.hasSound = false;
+            PopUpBook.prototype.showPopUp = function ShowPop() { };
+        </script>
+    </head>
+    <body></body>
+</html>
