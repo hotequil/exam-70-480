@@ -1,0 +1,23 @@
+1. Which of the following keywords provide iterative control flow?
+A. if statement
+B. switch statement
+C. for X
+D. break
+
+2. Which of the following array methods combines two arrays?
+A. join
+B. combine
+C. split
+D. concat X
+
+3. Which iterative control syntax can guarantee that the loop is processed at least once?
+A. for...in loop
+B. while loop
+C. do...while loop X
+D. for loop
+
+4. Which keyword is used to exit a loop?
+A. continue
+B. break X
+C. stop
+D. next
