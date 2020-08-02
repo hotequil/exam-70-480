@@ -1,23 +1,29 @@
-1. Which of the following keywords provide iterative control flow?
-A. if statement
-B. switch statement
-C. for X
-D. break
+1. Which of the following isn’t a supported way to add an event handler to a DOM element?
+A. Declaring within the HTML element by assigning the event attribute to a JavaScript function
+B. Setting the attribute in CSS to a valid JavaScript function X
+C. Dynamically through JavaScript by assigning a JavaScript function to the object's event property
+D. Dynamically through JavaScript via the assign/remove event listener methods
 
-2. Which of the following array methods combines two arrays?
-A. join
-B. combine
-C. split
-D. concat X
+2. Which of the following isn’t an attribute of an anonymous function?
+A. Anonymous functions can’t be called by any other code.
+B. Anonymous functions have a clearly defined name. X
+C. Anonymous functions can be passed as parameters.
+D. Anonymous functions can’t be assigned to a DOM element declaratively.
 
-3. Which iterative control syntax can guarantee that the loop is processed at least once?
-A. for...in loop
-B. while loop
-C. do...while loop X
-D. for loop
+3. Which code line would successfully cancel an event?
+A. window.event.returnValue = false; X
+B. return false;
+C. window.event.Return();
+D. window.Stop();
 
-4. Which keyword is used to exit a loop?
-A. continue
-B. break X
-C. stop
-D. next
+4. Which event occurs when a DOM element receives the cursor?
+A. focus X
+B. change
+C. keydown
+D. mouseleave
+
+5. Which option provides the correct sequence of events in a drag-and-drop operation?
+A. dragstart, drag, dragenter, drop X
+B. dragstart, drag, dragenter, dragstop
+C. drag, dragstart, drop, dragenter
+D. drag, dragstart, dragenter, dragstop

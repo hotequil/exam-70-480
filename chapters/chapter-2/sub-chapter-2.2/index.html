@@ -2,175 +2,286 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Implement program flow</title>
-        <style></style>
+        <title>Raise and handle an event</title>
+        <style>
+            body{
+                margin: 0;
+                height: 100vh;
+            }
+
+            .outer{
+                width: 200px;
+                height: 200px;
+                background-color: red;
+            }
+
+            .middle{
+                width: 50%;
+                height: 50%;
+                position: relative;
+                top: 25%;
+                left: 25%;
+                background-color: green;
+            }
+
+            .inner{
+                width: 50%;
+                height: 50%;
+                position: relative;
+                top: 25%;
+                left: 25%;
+                background-color: blue;
+            }
+
+            .mouse{
+                width: 300px;
+                height: 300px;
+                border: 2px solid #101010;
+            }
+
+            .capture-and-bubbling{
+                margin-top: 300px;
+            }
+
+            .drag .dropped{
+                width: 50%;
+                height: 50%;
+                position: relative;
+                top: 25%;
+                left: 25%;
+                background-color:black;
+            }
+
+            .drag .over {
+                transform: scale(1.1);
+            }
+
+            .drag .bucket {
+                width: 100px;
+                height: 100px;
+                margin: 10px 10px 10px 10px;
+                position:absolute;
+            }
+
+            .drag .chip {
+                width:20px;
+                height:20px;
+                position:absolute;
+            }
+
+            .drag div:first-of-type {
+                background-color: red;
+            }
+
+            .drag div:nth-of-type(2) {
+                background-color: green;
+                left:25%;
+            }
+
+            .drag div:nth-of-type(3) {
+                background-color: blue;
+                left:50%;
+            }
+
+            .drag #chip {
+                background-color: black;
+                width:50px;
+                height:50px;
+            }
+
+            .drag .begin {
+                position:absolute;
+                left: 150px;
+                top: 150px;
+            }
+        </style>
         <script>
-            let num = 100, str = "100";
+            const loadBody = () => console.log("Body was loaded");
 
-            console.log(`
-                num == str: ${num == str}
-                num === str: ${num === str}
-            `);
+            const onloadHandler = () => console.log("event 1");
+            const onloadHandler2 = () => console.log("event 2");
+            const onloadHandler3 = () => console.log("event 3");
 
-            let minimumAge = 18;
-            let myAge = 18;
-            let ages = [34, 2, 10, 60, 52, 20, 18];
+            window.addEventListener("load", onloadHandler, false);
+            window.addEventListener("load", onloadHandler2, false);
+            window.addEventListener("load", onloadHandler3, false);
+            window.addEventListener("load", load, false);
+            window.removeEventListener("load", onloadHandler2, false); //for remove, the params must be equals
 
-            myAge >= minimumAge ? console.log("I can drive!") : console.log("I can't drive");
+            function load(){
+                const button = document.querySelector("[data-button]");
+                const clickInButton = event => {
+                    event.stopPropagation(); //for stop event bubbling
+                    alert("Button was clicked")
+                };
 
-            ages.forEach(age => console.log(`the age ${age} is greater or equal than minimum age ${minimumAge}: ${age >= minimumAge}`));
+                // button.onclick = () => alert("Button was clicked");
+                // or
+                button.onclick = clickInButton;
 
-            let favoriteColor = "black";
+                console.log("-------------------------------------------------------------------------------");
 
-            if(favoriteColor == "red"){
-                console.log("Your favorite color is red");
-            } else if(favoriteColor == "green"){
-                console.log("Your favorite color is green");
-            } else if(favoriteColor == "blue"){
-                console.log("Your favorite color is blue");
-            } else{
-                console.log(`Your favorite color is ${favoriteColor}`);
+                const inputForBlur = document.querySelector("[data-input-blur]");
+
+                                                                                  //if true, the events start from top to bottom, if false, start from bottom to top
+                inputForBlur.addEventListener("blur", () => alert("input blur"), false);
+                                              //focus, focusin, focusout
+
+                                             //or window.event.returnValue = false;
+                const clickLink = (event) => event.returnValue = false; //cancel event on DOM
+                const link = document.querySelector("[data-link]");
+                link.onclick = clickLink;
+
+                console.log("-------------------------------------------------------------------------------");
+
+                const ol = document.querySelector(".eventOrder");
+
+                const clearList = () => ol.innerHTML = "";
+                const appendText = (text = "") => {
+                    const li = document.createElement("li");
+                    li.innerText = text;
+
+                    ol.appendChild(li);
+                };
+
+                const outerDivClick = () => appendText("outer Div Clicked");
+                const middleDivClick = () => appendText("middle Div Clicked");
+                const innerDivClick = (event) => {
+                    // event.cancelBubble = true; //cancel only event bubblings, not cascading
+                    appendText("inner Div Clicked")
+                };
+
+                document.querySelector(".outer").addEventListener("click", outerDivClick, false);
+                document.querySelector(".middle").addEventListener("click", middleDivClick, false);
+                document.querySelector(".inner").addEventListener("click", innerDivClick, false);
+                document.querySelector(".clearButton").addEventListener("click", clearList);
+
+                console.log("-------------------------------------------------------------------------------");
+
+                const inputChange = document.querySelector("[data-input-change]");
+                const outputChange = document.querySelector("[data-output-change]");
+
+                inputChange.addEventListener("input", () => outputChange.innerHTML = inputChange.value, false);
+
+                inputChange.addEventListener("keydown", event => console.log(event.keyCode))
+
+                document.onkeydown = event => event.ctrlKey && event.keyCode == 39 ? inputChange.focus() : null;
+
+                console.log("-------------------------------------------------------------------------------");
+
+                const elementToMouseEvents = document.querySelector("[data-event-mouse]");
+
+
+                elementToMouseEvents.ondblclick = () => elementToMouseEvents.style.backgroundColor = "red";
+                elementToMouseEvents.onmousedown = () => elementToMouseEvents.style.backgroundColor = "green";
+                elementToMouseEvents.onmouseup = () => elementToMouseEvents.style.backgroundColor = "blue";
+                elementToMouseEvents.onmouseleave = () => elementToMouseEvents.style.backgroundColor = "black";
+                elementToMouseEvents.onmousemove = () => elementToMouseEvents.style.backgroundColor = "cyan";
+                elementToMouseEvents.onmouseenter = () => elementToMouseEvents.style.backgroundColor = "yellow";
+                                    //or onmouseover
+
+                console.log("-------------------------------------------------------------------------------");
+
+                const boxes = [document.getElementById("bucket1"), document.getElementById("bucket2"), document.getElementById("bucket3")];
+                const chip = document.getElementById("chip");
+
+                chip.addEventListener("dragstart", event => event.dataTransfer.setData("Text", this.id));
+
+                boxes.forEach(box => box.addEventListener("dragenter", () => box.classList.add("over")));
+                boxes.forEach(box => box.addEventListener("dragleave", () => box.classList.remove("over")));
+                boxes.forEach(box => box.addEventListener("dragover", event => event.returnValue = false));
+
+                boxes.forEach(box => {
+                    box.addEventListener("drop", event => {
+                        event.returnValue = false;
+
+                        chip.classList.remove("begin");
+                        chip.classList.add("dropped");
+
+                        box.appendChild(chip);
+                    });
+                });
+
+                console.log("-------------------------------------------------------------------------------");
+
+                const myEvent = new CustomEvent(
+                    "myEvent", //name
+                    {
+                        detail: {
+                            description: "a description of the event",
+                            timeofevent: new Date(),
+                            eventcode: 2,
+                            hello: () => console.log("hello"),
+                        },
+                        bubbles: true,
+                        cancelable: true
+                    } //config params
+                );
+
+                document.addEventListener("myEvent", event => {
+                    console.log("my event actived");
+                    console.log(event.detail.description);
+                    console.log(event.detail.hello());
+                });
+
+                document.dispatchEvent(myEvent); //call event
+
+                console.log("-------------------------------------------------------------------------------");
+
+                const infos = document.querySelector("[data-infos]");
+                const inputZipcode = document.querySelector("[data-input-zipcode]");
+
+                inputZipcode.oninput = event => {
+                    const value = event.currentTarget.value.replace(/\D/g, "");
+
+                    if(value.length == 8){
+                        fetch(`https://viacep.com.br/ws/${value}/json`)
+                            .then(response => response.json())
+                            .then(data => data.erro ? infos.innerHTML = "invalid zipcode" : infos.innerHTML = JSON.stringify(data));
+                    };
+                };
             };
-
-            switch(favoriteColor){
-                case "red": //RED OR GREEN
-                case "green":
-                    console.log("Your favorite color is red or green");
-                    break;
-                case "blue":
-                    console.log("Your favorite color is blue");
-                    break;
-                default:
-                    console.log(`Your favorite color is ${favoriteColor}`);
-                    break;
-            };
-
-            const primaryFruitsList = ["banana", "apple", "tomato"]; //you can add numbers, objects, strings, booleans...
-            const secondaryFruitsList = new Array("banana", "apple", "tomato");
-
-            primaryFruitsList[10] = "avocado";
-            primaryFruitsList.push("cherry");
-            primaryFruitsList.unshift("strawberry");
-
-            const biDimensional = [
-                [1], [2], [3],
-                [4], [5], [6],
-                [7], [8], [9],
-            ];
-
-            console.log(biDimensional);
-            console.log(biDimensional.length);
-            console.log(biDimensional[2][0]);
-
-            const sports = ['football', 'cricket', 'rugby', 'tennis', 'badminton'];
-            const moreSports = ['soccer', 'basketball', 'hockey'];
-            const combinedSports = sports.concat(moreSports);
-
-            console.log(sports);
-            console.log(moreSports);
-            console.log(combinedSports);
-
-            console.log(combinedSports.indexOf("rugby", 0)); //params: search and init in index (optional), it returns the index of array, ex: 0,1,2,3..., if not returns -1
-            console.log(combinedSports.lastIndexOf("rugby", combinedSports.length)); //equal indexOf, but search in descending order
-
-            console.log(combinedSports.join(" --- "));
-            console.log(combinedSports.reverse());
-            console.log(combinedSports.sort());
-            console.log(combinedSports.sort((a, b) => a.length > b.length ? 1 : -1));
-
-            console.log(combinedSports.slice(0, 2)); //params: initIndex, finalIndex, return new array with itens between initIndex and finalIndex - 1
-
-            console.log(combinedSports.splice(4, 2, "golf", "curling")); //params: remove element from initIndex, quantity deleted elements, ...elements to add after in initIndex
-            console.log(combinedSports);
-
-            //stack functionality
-            const beers = ["ipa", "weizen", "pilsen", "book"];
-            console.log(beers);
-
-            console.log(beers.push("stout")); //push returns the length of array
-            console.log(beers);
-
-            console.log(beers.push("witbier", "strong ale"));
-            console.log(beers);
-
-            console.log(beers.pop()); //returns item deleted or undefined if list is empty
-            console.log(beers); //returns item deleted or undefined if list is empty
-
-            //stack functionality
-            const languages = ['java', 'js', 'ts', 'c#', 'python'];
-            console.log(languages.shift()); //returns the elements deleted, it is the first element in list;
-            console.log(languages.unshift("c++", "c", "ruby")); //return length of array, and add "c++", "c", "ruby" in beginning of array
-            console.log(languages);
-
-            //queue functionality (you can do it with push and shift or with unshift and pop)
-            const IDES = ["rubymine", "vscode", "brackets", "sublime"];
-            console.log(IDES);
-            console.log(IDES.push("notepad++"));
-            console.log(IDES.push("notepad"));
-            console.log(IDES);
-            console.log(IDES.shift());
-            console.log(IDES);
-
-            const nums1 = [0, 2, 3, 4];
-            const nums2 = [0, 2, 4, 6];
-
-            //returns true if the condition in all interations are true, else returns false
-            //params: callback method and reference to the array object (optional)
-            console.log(nums1.every(val => (val % 2) == 0, this));
-            console.log(nums2.every(val => (val % 2) == 0, this));
-
-            //returns true if the condition in a interation are true, else returns false
-            //params: callback method and reference to the array object (optional)
-            console.log(nums1.some(val => (val % 2) == 0), this);
-            console.log(nums2.some(val => (val % 2) == 0), this);
-
-            nums1.forEach((item, index, arr) => console.log(item, index, arr))//loop in each item
-
-            //params: callback method and reference to the array object (optional), returns new array with elements filtered with condition
-            console.log(nums1.filter(item => item == 2));
-
-            //params: callback method and reference to the array object (optional), returns new array with elements manipulated
-            console.log(nums1.map(item => item * 5));
-
-            //reduce in ascending order and reduceRight in descending order
-            //params: callback method (previous, current, index, arr) and initValue
-            console.log(nums1.reduce((previous, current, index, arr) => previous + current), 0);
-            console.log(nums1.reduceRight((previous, current) => previous + current));
-
-            for(let i = 0; i < combinedSports.join("").length; i+=5){ // or i++
-                document.write(`${i}<br>`);
-            };
-
-            const person = {
-                firstName: "João Paulo",
-                lastName: "Hotequil",
-                birthDate: "Jun 28, 2002",
-                gender: "male"
-            };
-
-            for(prop in person){
-                console.log(person[prop]);
-            }
-
-            //execute if the conditon is true (execute after the condition)
-            let whileIndex = 0;
-            while(whileIndex < 10){
-                console.log(whileIndex);
-                whileIndex++;
-
-                // continue; break the interation and continua to next
-                // break; stop and leave the looṕ
-            }
-
-            console.log("-------------------------------------------------");
-
-            //execute always first time without condition (execute before the condition)
-            let doWhileIndex = 0;
-            do{
-                console.log(doWhileIndex);
-                doWhileIndex++;
-            } while(doWhileIndex < 10)
         </script>
     </head>
-    <body></body>
+    <body onload="loadBody()">
+        <div>
+            <button data-button>Button</button>
+        </div>
+        <div>
+            <label for="zipcode">Zipcode request for get infos with blur</label>
+            <input id="zipcode" data-input-zipcode type="text">
+            <span data-infos></span>
+        </div>
+        <div>
+            <label for="blur">Event blur</label>
+            <input id="blur" data-input-blur type="text">
+        </div>
+        <div>
+            <a data-link target="_blank" href="https://google.com.br">Google</a>
+        </div>
+        <div>
+            <div class="outer">
+                <div class="middle">
+                    <div class="inner"></div>
+                </div>
+            </div>
+            <ol class="eventOrder"></ol>
+            <button class="clearButton">Clear</button>
+        </div>
+        <div>
+            <label for="change">Event change (press CTRL + right arrow for focus)</label>
+            <input id="change" data-input-change type="text">
+            <span data-output-change></span>
+        </div>
+        <div class="mouse" data-event-mouse></div>
+        <div class="drag">
+            <div id="bucket1" class="bucket"></div>
+            <div id="bucket2" class="bucket"></div>
+            <div id="bucket3" class="bucket"></div>
+            <div id="chip" draggable="true" class="chip"></div>
+        </div>
+        <div class="capture-and-bubbling">
+            <img src="./eventflow.svg" alt="Capture phase vs bubbling phase">
+        </div>
+    </body>
 </html>
