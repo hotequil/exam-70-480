@@ -1,0 +1,16 @@
+1. Which statement correctly describes the proper error handling using try...catch...finally blocks?
+A. Proper error handling allows code processing to continue and to provide appropriate user feedback. X
+B. Proper error handling allows users to fix problems with the webpage.
+C. Proper error handling allows you to debug the application at run time.
+D. Proper error handling allows you to suppress all the bugs in your scripts.
+
+2. Which of the following isn’t a property of the exception object?
+A. message
+B. description X
+C. number
+D. name
+
+3. Why is checking for null a good practice?
+A. Checking for null prevents the use of an object before it’s initialized. X
+B. Checking for null prevents errors resulting in NaN.
+C. Checking for null prevents the need to throw custom errors.

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Implement exception handling</title>
+        <script>
+            // try{
+            //     window.dosomeunsupportedmethod();
+            // } catch(error){
+            //     console.log(error);
+            //     console.log("Browser does not support the desired functionality.");
+            // }
+            //
+            // try{
+            //     window.doSomething()
+            // } catch(error){
+            //     console.log(error);
+            // } finally{
+            //     console.log("Hi, i'm finally!");
+            // }
+
+            // const WorkWithCanvas = () => {
+            //     const canvas = document.getElementById("myCanvas");
+            //     const context = canvas.getContext("2d");
+            //
+            //     (function (){
+            //         contxt.arc(50, 50, 25, 0, 360);
+            //     })();
+            //
+            //     context.fillStyle = "blue";
+            //     context.fill();
+            //     context.strokeStyle = "red";
+            //     context.stroke();
+            // };
+            //
+            // window.onload = function () {
+            //     try{
+            //         WorkWithCanvas();
+            //     } catch(error){
+            //         console.log(error);
+            //     };
+            // };
+
+            // const WorkWithCanvas = () => {
+            //     try{
+            //         const canvas = document.getElementById("myCanvas");
+            //         const context = canvas.getContext("2d");
+            //
+            //         (function (){
+            //             contxt.arc(50, 50, 25, 0, 360);
+            //         })();
+            //
+            //         context.fillStyle = "blue";
+            //         context.fill();
+            //         context.strokeStyle = "red";
+            //         context.stroke();
+            //     } catch(error){
+            //         console.log(error);
+            //         throw error;
+            //     };
+            // };
+            //
+            // window.onload = function () {
+            //     WorkWithCanvas();
+            // };
+
+            // const ball = {
+            //     x: -1,
+            //     y: -1,
+            //     draw: function(ctx){
+            //         if(this.x < 0) throw new Error("25 Invalid X coordinate");
+            //     }
+            // }
+            //
+            // window.onload = function(){
+            //     try{
+            //         const canvas = document.getElementById("myCanvas");
+            //         const context = canvas.getContext("2d");
+            //         ball.draw(context);
+            //     } catch(error){
+            //         console.log(error.message);
+            //     };
+            // };
+
+            const multiplyNumbers = (first, second, third) => {
+                                                                                      //message, fileName, lineNumber
+                if (first == null || second == null || third == null) throw new Error("a param is null");
+
+                return first * second * third;
+            };
+
+            window.onload = function(){
+                try {
+                    const a = 5, b = 10, c = undefined; //or null
+                    const result = multiplyNumbers(a, b, c);
+
+                    alert(result);
+                } catch(error){
+                    console.log(error);
+                    console.log(error.message);
+                    console.log(error.name);
+                    console.log(error.number);
+                };
+            };
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas"></canvas>
+    </body>
+</html>
