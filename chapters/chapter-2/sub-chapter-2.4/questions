@@ -1,0 +1,23 @@
+1. Which of the following is a valid WebSocket instantiation?
+A. wsConnection = new WebSocket(‘http://studygroup.70480.com’);
+B. wsConnection = new WebSocket(‘tcp://studygroup.70480.com’,[‘soap’,’xmpp’]);
+C. wsConnection = new WebSocket(‘wss://studygroup.70480.com’,[‘soap’,’xmpp’]); X
+D. wsConnection = new WebSocket(‘ftp://studygroup.70480.com’,[‘soap’,’xmpp’]);
+
+2. Which of the following statements properly handles the reception of data from a WebSocket?
+A. wsConnection.onpost = function(msg){..};
+B. wsConneciton.onreceive = function(msg){...};
+C. wsConnection.onmessage = function(msg){...}; X
+D. wsConnection.ongetdata = function(msg){...};
+
+3. Which list identifies the properties that need to be set up to make an AJAX call?
+A. cache, datatype, success
+B. url, cache, datatype, success
+C. url, datatype, onsuccess X
+D. url, datatype, oncomplete
+
+4. Why is wiring up events with jQuery easier?
+A. It allows you to assign the event listener to many elements at once via the selector syntax. X
+B. There is no difference wiring up events with jQuery versus addEventListener method.
+C. jQuery works more efficiently in a loop.
+D. jQuery allows both named and anonymous functions to be used as event listeners.

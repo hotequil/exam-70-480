@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Implement a callback</title>
+        <script src="jquery-3.5.1.min.js"></script>
+        <script>
+            //CALLBACK
+            // const MyCallBack = result => alert(result);
+            //
+            // const WillCallBackWhenDone = (f, a, b) => {
+            //     const r = a * b;
+            //     f(r);
+            // };
+            //
+            // window.onload = () => WillCallBackWhenDone(MyCallBack, 3, 3);
+
+            //WEBSOCKET
+            // window.onload = () => {
+            //     //STATUS:
+            //     //OPEN The connection is open.
+            //     //CONNECTING The connection is in the process of connecting and not ready for use yet. This is thedefault value.
+            //     //CLOSING The connection is in the process of being closed.
+            //     //CLOSED The connection is closed.
+            //
+            //     let wsConnection = new WebSocket('ws://studygroup.70480.com', ['soap', 'xmpp']); //url, protocols
+            //     const chatBox = document.getElementById("chatWindow");
+            //     const disconnectButton = document.getElementById("Disconnect");
+            //     const connectButton = document.getElementById("Connect");
+            //     const sendButton = document.getElementById("Send");
+            //     const msgToSend = document.getElementById("msgSendText");
+            //
+            //     const NewLine = () => chatBox.textContent = chatBox.textContent + '\r\n';
+            //
+            //     //event when connection is established
+            //     wsConnection.onopen = () => chatBox.textContent = `${chatBox.textContent} System: Connection has been established`;
+            //
+            //     //event when connection give a error
+            //     wsConnection.onerror = error => {
+            //         //write an error to the screen
+            //         NewLine();
+            //         chatBox.value = chatBox.value + "System: Error Occurred. ";
+            //     }
+            //
+            //     //event when connection was closed
+            //     wsConnection.onclose = () => {
+            //         NewLine();
+            //         chatBox.value = `${chatBox.value} System: Connection has been closed.`;
+            //     };
+            //
+            //     //event when a message comes
+            //     wsConnection.onmessage = msg => {
+            //         NewLine();
+            //         chatBox.value = `${chatBox.value} Them: ${msg.data}`;
+            //     };
+            //
+            //     disconnectButton.onclick = () => wsConnection.close();
+            //
+            //     connectButton.onclick = () => {
+            //         //instantiate and open the connection
+            //         wsConnection = new WebSocket('ws://studygroup.70480.com', ['soap', 'xmpp']); //url, protocols
+            //     };
+            //
+            //     sendButton.onclick = () => {
+            //         //check the state of the connection
+            //         if(wsConnection.readyState == WebSocket.OPEN){
+            //             //send message to server.
+            //             wsConnection.send(msgToSend.value);
+            //
+            //             NewLine();
+            //
+            //             //show message in chat window.
+            //             chatBox.value = `${chatBox.value} You: ${msgToSend.value}`;
+            //
+            //             //clear message text box
+            //             msgToSend.value = "";
+            //         } else return;
+            //     };
+            // };
+
+            //JQUERY AND AJAX
+            // window.onload = () => {
+            //     const button = $("#searchButton");
+            //     const searchInput = $("#searchFruit");
+            //     const searchResults = $("#searchResults");
+            //     const form = $("[data-form]");
+            //     let searchPath = "";
+            //
+            //     form.submit(event => {
+            //         event.preventDefault();
+            //
+            //
+            //         switch(searchInput.val()){
+            //             case "long":
+            //                 searchPath = "Fruit/Long.xml";
+            //                 break;
+            //             case "round":
+            //                 searchPath = "Fruit/Round.xml";
+            //                 break;
+            //             case "orange":
+            //                 searchPath = "Fruit/Orange.xml";
+            //                 break;
+            //             default:
+            //                 searchPath = "";
+            //                 InvalidSearchTerm();
+            //         };
+            //
+            //         if(searchPath){
+            //             $.ajax({
+            //                 url: searchPath,
+            //                 cache: false,
+            //                 method: "GET",
+            //                 dataType: "xml",
+            //                 success: function(data){
+            //                     $(data).find("fruit").each(function(){
+            //                         searchResults.empty();
+            //                         searchResults.append($(this).text()); //reference this to target
+            //                         searchResults.append("<br>");
+            //                     });
+            //                 },
+            //                 error: (request, status, error) => {
+            //                     console.log(request, status, error);
+            //                     searchResults.empty();
+            //                     searchResults.append("An error occurred while retrieving the information.")
+            //                 }
+            //             });
+            //
+            //             searchInput.val("");
+            //         };
+            //     });
+            //
+            //     const InvalidSearchTerm = () => {
+            //         searchResults.empty();
+            //         searchResults.append("Invalid Search Term. Please try again.");
+            //     };
+            // };
+
+            //JQUERY AND EVENTS
+            //JAVASCRIPT SYNTAX
+            // window.onload = () => {
+            //     document.getElementById("door1").onclick = function(){
+            //         this.style.backgroundColor = "black";
+            //     };
+            //
+            //     document.getElementById("door2").onclick = function(){
+            //         this.style.backgroundColor = "black";
+            //     };
+            //
+            //     document.getElementById("door3").onclick = function(){
+            //         this.style.backgroundColor = "black";
+            //     };
+            //
+            //     document.getElementById("door4").onclick = function(){
+            //         this.style.backgroundColor = "yellow";
+            //     };
+            //
+            //     document.getElementById("door5").onclick = function(){
+            //         this.style.backgroundColor = "yellow";
+            //     };
+            //
+            //     document.getElementById("door6").onclick = function(){
+            //         this.style.backgroundColor = "yellow";
+            //     };
+            // };
+            //JQUERY SYNTAX
+            // $("document").ready(() => {
+            //     //CSS selectors
+            //     $(".table1 td").click(function(){
+            //         $(this).css("background-color", "black"); //reference this to target
+            //     });
+            //
+            //     $(".table2 td").click(function(){
+            //         $(this).css("background-color", "yellow"); //reference this to target
+            //     });
+            // });
+
+            //IMPLEMENTING ANONYMOUS FUNCTION (OR WITHOUT NAME)
+            $("document").ready(() => { //ANONYMOUS FUNCTION
+                const show = (status, callback) => {
+                    switch(status){
+                        case "FINISHED":
+                            callback(status);
+                            break;
+                    };
+                };
+
+                $("[data-button]").click(() => { //ANONYMOUS FUNCTION
+                    const status = "FINISHED";
+
+                    show(status, (param) => alert(param)); //ANONYMOUS FUNCTION
+                });
+            });
+        </script>
+    </head>
+    <body>
+<!--        WEBSOCKET-->
+<!--        <div align="center">-->
+<!--            <div>-->
+<!--                70-480 Study Group Chat Forum-->
+<!--            </div>-->
+<!--            <div>-->
+<!--            <textarea id="chatWindow" style="height: 500px; width: 300px"></textarea>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <input type="text" id="msgSendText" style="width: 300px"/>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <button id="Disconnect">Disconnect</button>-->
+<!--                <button id="Connect">Connect</button>-->
+<!--                <button id="Send">Send</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        JQUERY AND AJAX-->
+<!--        <form data-form>-->
+<!--            <label for="searchFruit">Enter search term: </label>-->
+<!--            <input type="text" id="searchFruit">-->
+<!--            <input type="submit" id="searchButton" value="Search">-->
+<!--        </form>-->
+<!--        <div>-->
+<!--            <h1>Results:</h1>-->
+<!--        </div>-->
+<!--        <div id="searchResults"></div>-->
+
+<!--    JQUERY AND EVENTS-->
+<!--        <table class="table1">-->
+<!--            <tr>-->
+<!--                <td id="door1">Door 1</td>-->
+<!--                <td id="door2">Door 2</td>-->
+<!--                <td id="door3">Door 3</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--        <table class="table2">-->
+<!--            <tr>-->
+<!--                <td id="door4">Door 4</td>-->
+<!--                <td id="door5">Door 5</td>-->
+<!--                <td id="door6">Door 6</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+
+<!--        ANONYMOUS FUNCTION-->
+        <button data-button>SHOW STATUS</button>
+    </body>
+</html>
