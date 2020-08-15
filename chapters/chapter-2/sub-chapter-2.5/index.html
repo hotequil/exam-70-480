@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create a web worker process</title>
+        <style>
+            body{
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+            }
+
+            body > div:nth-child(1){
+                background-color: #000;
+                color: #fff;
+            }
+
+            body > div:nth-child(2){
+                background-color: #ffff00;
+            }
+        </style>
+        <script>
+            window.onload = () => {
+                const calcContainer = document.querySelector("[data-calc]");
+                const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                let firstIndex = 0;
+                let secondIndex = 0;
+
+                const interval = setInterval(() => {
+                    if(!isNaN(numbers[firstIndex])){
+                        const span = document.createElement("span");
+                        span.innerHTML = `${numbers[firstIndex]} x ${numbers[secondIndex]} = ${numbers[firstIndex] * numbers[secondIndex]} <br>`;
+                        calcContainer.appendChild(span);
+
+                        numbers[secondIndex] == numbers[numbers.length - 1] ? ++firstIndex : null;
+                        secondIndex == (numbers.length - 1) ? secondIndex = 0 : ++secondIndex;
+                    } else clearInterval(interval);
+                }, 1000);
+
+                console.log("-----------------------------------------------------------------");
+
+                const buttonsContainers = document.querySelector("[data-buttons]");
+                const buttonFinish = document.querySelector("[data-button-finish]");
+                const buttonJohn = document.querySelector("[data-button-john]");
+                const worker = new Worker("./worker.js");
+                const otherWorker = new Worker("./other-worker.js");
+
+                otherWorker.postMessage({
+                    message: "Hello other worker"
+                })
+
+                buttonFinish.onclick = () => {
+                    worker.terminate();
+
+                    const span = document.createElement("span");
+                    span.innerHTML = `Finish Worker<br>`;
+                    buttonsContainers.appendChild(span);
+                };
+
+                buttonJohn.onclick = () => worker.postMessage({
+                    message: "Hello john",
+                });
+
+                //send first data
+                worker.postMessage({
+                    message: "Hello world, init Worker",
+                }, []); //params: message and transfer
+
+                //if an error occurs
+                worker.onerror = error => {
+                    console.log("worker.onmessage error:", error);
+                    console.log("worker.onmessage error.type:", error.type);
+
+                    const span = document.createElement("span");
+                    span.innerHTML = `Error Worker<br>`;
+                    buttonsContainers.appendChild(span);
+                };
+
+                //return message when worker postMessage in his file
+                worker.onmessage = event => {
+                    console.log("worker.onmessage event:", event);
+                    console.log("worker.onmessage event.data.message:", event.data.message);
+
+                    const span = document.createElement("span");
+                    span.innerHTML = `${event.data.message}<br>`;
+                    buttonsContainers.appendChild(span);
+                };
+            };
+        </script>
+    </head>
+    <body>
+        <div data-buttons>
+            <button data-button-finish>Finish Worker</button>
+            <button data-button-john>Hello John</button>
+            <br>
+        </div>
+        <div data-calc></div>
+    </body>
+</html>

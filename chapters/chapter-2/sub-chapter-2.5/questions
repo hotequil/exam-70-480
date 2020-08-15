@@ -1,0 +1,29 @@
+1.Which of the following isn’t a valid web worker operation?
+A. postMessage
+B. onmessage
+C. close X
+D. terminate
+
+2. Which method cancels a web worker?
+A. close
+B. terminate X
+C. suspend
+D. sleep
+
+3. Where must you place the JavaScript code to run in the context of a web worker?
+A. Between the <head></head> elements
+B. In any <script> block in the page
+C. In its own JavaScript file X
+D. As a dynamic function assigned to the self.worker
+
+4. How many web workers/subworkers can run concurrently?
+A. A multiple of four web workers including subworkers, per processor
+B. 16 workers by default, but you can change that number via self.configuration
+C. A limitless number of workers X
+D. A limit of eight workers, each with a maximum of eight subworkers
+
+5. To have a script run continually every 30 seconds, which line of code should be used?
+A. wsConnection.repeatWork(“workerFile.js”,30000);
+B. setTimeout(function(){ worker.postMessage(“”);}, 30000);
+C. setTimeout( worker.postMessage(“”), 30000);
+D. setInterval(function(){ worker.postMessage(“”);}, 30000); X
