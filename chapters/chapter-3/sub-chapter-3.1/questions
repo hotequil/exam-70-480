@@ -1,0 +1,29 @@
+1. Which input control is better suited for allowing users to make multiple selections?
+A. radio button
+B. textarea
+C. checkbox X
+D. radio or checkbox
+
+2. Which input control is designed to allow users to enter secure information in a way that keeps others from seeing what’s typed?
+A. text
+B. textarea
+C. url
+D. password X
+
+3. Which input control posts form data to a server?
+A. button
+B. Submit X
+C. Reset
+D. radio
+
+4. Which of the following declarations are valid ways to make a text control non-editable?
+A. <input type=”text” edit=”false”/>
+B. <input type=”text” editable=”false”/>
+C. <input type=”text” readonly=”yes”/>
+D. <input type=”text” readonly/> X
+
+5. How can you ensure that all necessary fields are populated before a form can be submitted?
+A. Write a JavaScript function to evaluate all the controls on the form for content.
+B. On the server, evaluate all the controls for data and return an error page for missing content.
+C. Add the required attribute on each control so that users get a message that the field is required. X
+D. Add a label to the page to let users know which controls they must fill in.

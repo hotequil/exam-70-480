@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Validate user input by using HTML5 elements</title>
+        <style>
+            form > *{
+                margin: 1rem;
+            }
+        </style>
+        <script></script>
+    </head>
+    <body>
+        <form id="form">
+            <div>
+                <label for="txt">Text</label>
+                <input id="txt" type="text" readonly value="00XY998BB">
+            </div>
+            <div>
+                <label for="txt2">Text 2</label>
+                <input disabled id="txt2" type="text" value="123">
+            </div>
+            <div>
+                <label for="txt3">Text 3 with pattern</label>
+                <input required placeholder="ex: 2020" id="txt3" type="text" pattern="[0-9]{4}" title="put a full year">
+            </div>
+            <div>
+                <label for="putPass">Password</label>
+                <input title="your password here" id="putPass" type="password">
+            </div>
+            <div>
+                <label for="firstNameText">First name</label>
+                <input type="text" id="firstNameText" maxlength="50">
+            </div>
+            <div>
+                <label for="putUrl">URL</label>
+                <input id="putUrl" type="url">
+            </div>
+            <div>
+                <label for="putNumber">Number</label>
+                <input id="putNumber" type="number">
+            </div>
+            <div>
+                <input type="checkbox" id="chkBrown" checked="checked">
+                <label for="chkBrown">Brown</label>
+
+                <input type="checkbox" id="chkBlonde">
+                <label for="chkBlonde">Blonde</label>
+
+                <input checked type="checkbox" id="chkBlack">
+                <label for="chkBlack">Black</label>
+
+
+                <input type="checkbox" id="chkRed">
+                <label for="chkRed">Red</label>
+
+                <input type="checkbox" id="chkNone">
+                <label for="chkNone">None</label>
+            </div>
+            <div>
+                <input type="radio" id="chkOne" name="experience">
+                <label for="chkOne">1 - Very Poor</label>
+
+                <input type="radio" id="chkTwo" name="experience">
+                <label for="chkTwo">2</label>
+
+                <input checked type="radio" id="chkThree" name="experience">
+                <label for="chkThree">3</label>
+
+                <input type="radio" id="chkFour" name="experience">
+                <label for="chkFour">4</label>
+
+                <input type="radio" id="chkFive" name="experience">
+                <label for="chkFive">5 - Very Good</label>
+            </div>
+            <div>
+                <label for="choose">Choose</label>
+                <input id="choose" type="range" min="1" max="25" value="20">
+            </div>
+            <div>
+                <label for="otherCommentsText">Comments</label>
+                <textarea id="otherCommentsText" rows="5" cols="20" spellcheck="true"></textarea>
+            </div>
+            <div>
+                <label for="putEmail">Email</label>
+                <input id="putEmail" type="email" placeholder="me@mydomain.com" required>
+            </div>
+            <div>
+                <label for="putDate">Date</label>
+                <input id="putDate" type="date" min="2008-02-04" max="2018-08-08">
+            </div>
+            <div>
+                <label for="putDatetime">Datetime-local</label>
+                <input id="putDatetime" type="datetime-local">
+            </div>
+            <div>
+                <label for="file">File</label>
+                <input id="file" type="file">
+            </div>
+            <div>
+                <label for="month">Month</label>
+                <input id="month" type="month">
+            </div>
+            <div>
+                <label for="img">Image</label>
+                <input src="img_submit.gif" alt="Submit" width="48" height="48" id="img" type="image">
+            </div>
+            <div>
+                <label for="color">color</label>
+                <input id="color" type="color">
+            </div>
+            <div>
+                <label for="hide">Hidden</label>
+                <input id="hide" type="hidden">
+            </div>
+            <div>
+                <label for="src">Search</label>
+                <input id="src" type="search">
+            </div>
+            <div>
+                <label for="phone">Phone</label>
+                <input id="phone" type="tel">
+            </div>
+            <div>
+                <label for="time">Time</label>
+                <input id="time" type="time">
+            </div>
+            <div>
+                <label for="week">Week</label>
+                <input id="week" type="week">
+            </div>
+            <div>
+                <select required form="form" name="select">
+                    <option value="valor1">Valor 1</option>
+                    <option value="valor2" selected>Valor 2</option>
+                    <option value="valor3">Valor 3</option>
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+                <input type="button" value="Cancel">
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+                <button type="reset" >Reset</button>
+                <button type="button">Cancel</button>
+            </div>
+        </form>
+    </body>
+</html>
