@@ -1,0 +1,18 @@
+1. Which of the following regular expression characters denote the end of the string?
+A. $ X
+B. %
+C. ^
+D. &
+
+2. Which of the following sandbox attributes allows the iFrame to load content from the containing HTML document?
+A. allow-script-execution
+B. allow-same-origin
+C. allow-forms
+D. allow-top-navigation X
+E. allow-top-document
+
+3. Which function should never be used to run JavaScript?
+A. execute
+B. JSDynamic
+C. eval X
+D. evaluate

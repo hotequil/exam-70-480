@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Validate user input by using JavaScript</title>
+    <style>
+        form > *{
+            margin: 2rem;
+        }
+
+        .column{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column{
+            max-width: 10%;
+        }
+
+        .column > *:not(:first-child){
+            margin: .5rem 0 0 0;
+        }
+    </style>
+    <script>
+        //isFinite: is a finite number
+        console.log(`1 (type string) is finite: ${isFinite("1")}`);
+        console.log(`1 (type number) is finite: ${isFinite(1)}`);
+        console.log(`foo bar (type string) is finite: ${isFinite("foo bar")}`);
+        console.log(`-------------------------------------------------------`);
+        //isNaN: is not a number
+        console.log(`1 (type string) is nan: ${isNaN("1")}`);
+        console.log(`1 (type number) is nan: ${isNaN(1)}`);
+        console.log(`foo bar (type string) is nan: ${isNaN("foo bar")}`);
+
+        window.onload = () => {
+            const inputCPF = document.querySelector("[data-input-cpf]");
+            const spanValidCPF = document.querySelector("[data-valid-cpf]");
+            const regexCPF = /\d{3}\.?\d{3}\.?\d{3}\-?\d{2}/;
+
+            inputCPF.oninput = function(){
+                const inputValue = this.value.replace(/\D/g, "");
+
+                inputValue.length == 11 && regexCPF.test(inputValue) ? spanValidCPF.textContent = "field valid" : spanValidCPF.textContent = "field invalid";
+            };
+
+            const correctTextarea = document.querySelector("#correct");
+            const resultCorrectTextarea = document.querySelector("[data-result-correct-textarea]");
+            const incorrectTextarea = document.querySelector("#incorrect");
+            const resultIncorrectTextarea = document.querySelector("[data-result-incorrect-textarea]");
+
+            const executeValue = (textarea, putTextIn, executeScript = false) => {
+                //remove script or others tags
+                //const value = textarea.value.replace(/[\<]?[\>]?/g, "");
+
+                const value = textarea.value;
+
+                putTextIn.textContent = value;
+
+                if(executeScript) eval(value);
+            };
+
+            correctTextarea.oninput = () => executeValue(correctTextarea, resultCorrectTextarea);
+            incorrectTextarea.oninput = () => executeValue(incorrectTextarea, resultIncorrectTextarea, true);
+        };
+    </script>
+</head>
+    <body>
+        <form name="form">
+            <div class="column">
+                <label for="cpf">CPF</label>
+                <input id="cpf"
+                       data-input-cpf
+                       type="text"
+                       pattern="[\d]{3}[\.]?[\d]{3}[\.]?[\d]{3}[\-]?[\d]{2}"
+                       placeholder="000.000.000-00"
+                       required>
+                <span data-valid-cpf>field invalid</span>
+            </div>
+            <div class="column">
+                <label for="correct">Correct textarea</label>
+                <textarea name="correct" id="correct" rows="5"></textarea>
+                <span data-result-correct-textarea></span>
+            </div>
+            <div class="column">
+                <label for="incorrect">Incorrect textarea</label>
+                <textarea name="correct" id="incorrect" rows="5"></textarea>
+                <span data-result-incorrect-textarea></span>
+            </div>
+            <div class="column">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+
+        <iframe width="560"
+                height="315"
+                src="https://www.youtube.com/embed/lH0gnwtSEGI"
+                frameborder="0"
+                sandbox="allow-scripts allow-same-origin">
+        </iframe>
+    </body>
+</html>
