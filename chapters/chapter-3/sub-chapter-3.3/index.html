@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Consume data</title>
+        <style>
+            code{
+                white-space: pre-wrap;
+            }
+        </style>
+        <script>
+            //JSON:
+            //{ "firstName": "João", "lastName": "Hotequil", "hairColor": "brown", "eyeColor": "brown" }
+
+            //XML (elements):
+            // <Person>
+            //    <firstName>João</firstName>
+            //    <lastName>Hotequil</lastName>
+            //    <hairColor>Brown</hairColor>
+            //    <eyeColor>Brown</eyeColor>
+            // </Person>
+
+            //XML (attributes):
+            //<Person firstname="João" lastName="Hotequil" hairColor="Brown" eyeColor="Brown"/>
+
+            //but there are also formats like JSONP, PIPED and QUERTY
+
+            window.onload = () => {
+                const putText = (text, element) => element.textContent += `${element.textContent == "" ? "" : "\n\n"}${text}`;
+                const putURL = url => `${url}?timestamp=${(new Date()).getTime()}`;
+                const timeout = {
+                    text: "request timed out",
+                    time: 2500
+                };
+
+                const consumeXMLHttpRequest = (url, asynchronous, element) => {
+                    const info = `consume: XMLHttpRequest - url = ${url} - asynchronous = ${asynchronous}`;
+                    const request = new XMLHttpRequest();
+
+                    request.open("GET", putURL(url), asynchronous); //params: method, url, async, userName, password
+                    request.send();
+
+                    //synchronous doesn't have timeout on XMLHttpRequest
+                    if(asynchronous){
+                        request.timeout = timeout.time;
+                        request.ontimeout = () => putText(`${info}: ${timeout.text}`, element);
+                        request.onreadystatechange = event => {
+                            console.log(`${info}: ${JSON.stringify(event)}`);
+
+                            request.readyState == 4 && request.status == "200" ? putText(request.responseText.trim(), element) : null;
+                        };
+                    } else putText(request.responseText.trim(), element);
+                };
+
+                //first code element
+                consumeXMLHttpRequest("./user-elements.xml", false, document.querySelector("[data-xml-http-request-not-async]"));
+                consumeXMLHttpRequest("./user-attributes.xml", false, document.querySelector("[data-xml-http-request-not-async]"));
+                consumeXMLHttpRequest("./user.json", false, document.querySelector("[data-xml-http-request-not-async]"));
+
+                //second code element
+                consumeXMLHttpRequest("https://viacep.com.br/ws/01001000/xml", true, document.querySelector("[data-xml-http-request-async]"));
+                consumeXMLHttpRequest("https://viacep.com.br/ws/01001000/json", true, document.querySelector("[data-xml-http-request-async]"));
+
+                const consumeFetch = async (url, element) => {
+                    const info = `consume: Fetch - url = ${url}`;
+                    const abortController = new AbortController();
+                    let data = "";
+
+                    setTimeout(() => {
+                        if(!data){
+                            abortController.abort();
+                            putText(`${info}: ${timeout.text}`, element);
+                        };
+                    }, timeout.time);
+
+                    const isXML = url.includes("xml");
+                    const response = await fetch(putURL(url), { signal: abortController.signal });
+                    data = await response.text(); //or await response.json(), but you can only use it with JSON response
+
+                    putText(data, element);
+                };
+
+                //third code element
+                consumeFetch("./user-elements.xml", document.querySelector("[data-fetch-not-async]"));
+                consumeFetch("./user-attributes.xml", document.querySelector("[data-fetch-not-async]"));
+                consumeFetch("./user.json", document.querySelector("[data-fetch-not-async]"));
+
+                //fourth code element
+                consumeFetch("https://viacep.com.br/ws/01001000/xml", document.querySelector("[data-fetch-async]"));
+                consumeFetch("https://viacep.com.br/ws/01001000/json", document.querySelector("[data-fetch-async]"));
+            };
+        </script>
+    </head>
+    <body>
+        <section>
+            <h2>XMLHTTPRequest not async (XML and JSON)</h2>
+            <code data-xml-http-request-not-async></code>
+        </section>
+        <section>
+            <h2>XMLHTTPRequest async (XML and JSON)</h2>
+            <code data-xml-http-request-async></code>
+        </section>
+        <section>
+            <h2>Fetch not async (XML and JSON)</h2>
+            <code data-fetch-not-async></code>
+        </section>
+        <section>
+            <h2>Fetch async (XML and JSON)</h2>
+            <code data-fetch-async></code>
+        </section>
+    </body>
+</html>

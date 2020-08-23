@@ -1,0 +1,17 @@
+1. Which of the following is a valid JSON string?
+A. { firstName, Rick, lastname, Delorme, hairColor, brown, eyeColor, brown }
+B. { firstName: Rick; lastname: Delorme; hairColor: brown; eyeColor: brown }
+C. { firstName: “Rick”; lastname: “Delorme”; hairColor: “brown”; eyeColor: “brown” }
+D. { firstName: “Rick”, lastname: “Delorme”, hairColor: “brown”, eyeColor: “brown” } X
+
+2.With the XMLHttpRequest object, which of the following properties provides the response in a human readable format?
+A. Response
+B. responseBody
+C. responseText X
+D. responseXML
+
+3. At which stage during an XMLHttpRequest are user credentials sent to the server?
+A. When the connection is opened
+B. When the request is sent
+C. When the ready state is complete
+D. When the server sends a security response requesting the credentials X
