@@ -1,0 +1,17 @@
+1. Which of the following code lines is the correct way create an object from a JSON string stored in a variable called jsonString?
+A. var o = JSON.split(jsonString);
+B. var o = JSON.stringify(jsonString);
+C. var o = JSON.parse(jsonString); X
+D. var 0 = JSON.join(jsonString);
+
+2. Which of the following code lines allows an XMLHttpRequest to return binary data?
+A. request.responseType = ‘binary’;
+B. request.responseType = ‘image/jpg’;
+C. response.type = ‘blob’;
+D. request.responseType = ‘blob’; X
+
+3. How do you control what’s sent to the server when submitting a form?
+A. Add a submit button to the form.
+B. Handle the submit event of the form. X
+C. Specify the action attribute of the form element.
+D. Ensure that all elements on the form have a name

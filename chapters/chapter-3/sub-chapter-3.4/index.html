@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Serialize, deserialize, and transmit data</title>
+        <style>
+            div{
+                margin: 2rem;
+            }
+        </style>
+        <script src="./jquery-3.5.1.min.js"></script>
+        <script>
+            //YOU NEED A LIVE SERVER FOR THIS SUB-CHAPTER
+
+            const postXML = () => {
+                const data = "<Person firstname=\"João\" lastName=\"Hotequil\" hairColor=\"Brown\" eyeColor=\"Brown\" />";
+                const request = new XMLHttpRequest(); //but, we can do requests with fetch (or others methods) instead of XMLHttpRequest
+
+                request.open("POST", "./post.json", false);
+                request.send(data);
+            };
+
+            const postJSON = () => {
+                const person = {
+                    name: "João Paulo Hotequil",
+                    age: 18
+                };
+
+                const personSerialized = JSON.stringify(person);
+                const personDeserialized = JSON.parse(personSerialized);
+
+                console.log(`personSerialized:`, personSerialized);
+                console.log(`personDeserialized:`, personDeserialized);
+
+                const request = new XMLHttpRequest();
+
+                request.open("POST", "./post.json", false);
+                request.send(personSerialized);
+            };
+
+            const getJSON = () => {
+                const request = new XMLHttpRequest();
+
+                request.open("GET", "./get.json", false);
+                request.send();
+
+                console.log(`responseText serialized:`, request.responseText);
+                console.log(`responseText deserialized:`, JSON.parse(request.responseText));
+            };
+
+            const getBinaryImage = () => {
+                const request = new XMLHttpRequest();
+                const fileName = "satisfaction-narrow-head.png";
+
+                request.open("GET", `./${fileName}`, true);
+                request.responseType = "blob";
+                request.send(null);
+
+                request.onload = () => {
+                    if(request.readyState == 4 && request.status == 200){
+                        const img = document.createElement("img");
+                        img.src = URL.createObjectURL(request.response);
+                        document.querySelector("body").appendChild(img);
+
+                        console.log(`response:`, request.response);
+                        console.log(`responseURL:`, request.responseURL);
+                    };
+                };
+            };
+
+            const postBinaryHTML = () => {
+                const data = new Blob(["<h1>hello world</h1>"], { type: "text/html" });
+                const request = new XMLHttpRequest();
+
+                request.open("POST", "./post.json");
+                request.responseType = "blob";
+                request.send(data);
+            };
+
+            const serializeFormOnSubmit = () => {
+                $("#post-form").submit(function(event){
+                    event.preventDefault();
+
+                    console.log($(this).serialize());
+                });
+            };
+
+            window.onload = () => {
+                postXML();
+                postJSON();
+                getJSON();
+                getBinaryImage();
+                postBinaryHTML();
+                serializeFormOnSubmit();
+            };
+        </script>
+    </head>
+    <body>
+        <form id="post-form" action="./post.json">
+            <div>
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text">
+            </div>
+            <div>
+                <label for="age">Age:</label>
+                <input id="age" name="age" type="number">
+            </div>
+            <div>
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </body>
+</html>
