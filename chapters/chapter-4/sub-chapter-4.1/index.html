@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Style HTML text properties</title>
+        <style>
+            @font-face{
+                font-family: "VT323";
+                src: url('./VT323-Regular.ttf');
+            }
+
+            html, body{
+                background-color: #000; /*or #000000*/
+                font-family: monospace;
+            }
+
+            h1{
+                color: yellow;
+                text-align: center;
+                letter-spacing: .25rem;
+            }
+
+            p{
+                color: #ff0; /*or #ffff00*/
+                font-size: 1.375rem; /*or Ypx, Yem, Y%, xx-small, x-small, small, smaller, medium, larger, large, x-large, xx-large*/
+                font-family: VT323, monospace;
+                text-align: right;
+            }
+
+            span{
+                color: rgba(255, 255, 0, 1); /*or rgb(...)*/
+                font-style: italic;
+                word-spacing: 2rem;
+                -webkit-hyphens: manual;
+                -ms-hyphens: manual;
+                hyphens: manual;
+            }
+
+            a{
+                color: hsla(60, 100%, 50%, 1); /*or hsl(...)*/
+                font-weight: 900; /*100 to 1000, or keywords like bold and bolder...*/
+                font-family: Arial, sans-serif;
+            }
+
+            blockquote{
+                color: #ff0;
+                text-indent: 10em;
+                text-shadow: 4px 4px 0 #ff0;
+                font-size: 2rem;
+            }
+
+            div{
+                max-width: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+        <span>There are many variations of passages of Lorem Ipsum available.</span>
+        <a href="#">Contrary to popular belief</a>
+        <blockquote cite="#">My quote</blockquote>
+        <div>
+            <span>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</span>
+        </div>
+    </body>
+</html>

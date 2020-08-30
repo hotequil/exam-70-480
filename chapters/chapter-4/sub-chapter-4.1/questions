@@ -1,0 +1,17 @@
+1. Which of the following CSS would not change the appearance of text?
+A. font-style: italic;
+B. font-weight: heavy; X
+C. font: bolder 12px arial;
+D. color: green;
+
+2. Which of the following aligns text to the full width of the available box?
+A. right
+B. full
+C. center
+D. justify X
+
+3. Which of the following is a way to configure the amount of space between words?
+A. word-margin
+B. letter-margin
+C. word-spacing X
+D. word-padding
