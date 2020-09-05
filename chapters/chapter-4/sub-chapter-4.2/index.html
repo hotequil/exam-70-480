@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Style HTML box properties</title>
+        <style>
+            html{
+                font-size: 16px;
+            }
+
+            body{
+                margin: 0;
+            }
+
+            .box{
+                width: 150px;
+                height: 150px;
+                margin: 1rem;
+                border-radius: .25rem;
+                border-width: 1px;
+                border-style: solid;
+                font-size: 1.25rem;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-transform: uppercase;
+                font-family: monospace;
+                letter-spacing: 1px;
+            }
+
+            .box-1{
+                width: 350px;
+                height: 100px;
+                background-color: #EA80FC20;
+                border: 1px solid #ea80fc;
+                color: #ea80fc;
+            }
+
+            .box-2{
+                background-color: #00ffe420;
+                border-style: dashed;
+                border-color: #00ffe4;
+                border-width: 1px;
+                color: #00ffe4;
+            }
+
+            .box-3{
+                background-color: #ff000020;
+                border-style: ridge;
+                border-color: #ff0000;
+                color: #ff0000;
+            }
+
+            .box-4{
+                padding: 2rem;
+                box-sizing: border-box;
+                border-radius: 50%;
+                background-color: #ffe0b2;
+                border-left: 4px solid #ff9800;
+                border-bottom: 6px ridge #ff9800;
+                border-right: 8px dashed #fb8c00;
+                border-top: 10px groove #f57c00;
+                color: #f57c00;
+                opacity: .75;
+                transition: opacity .25s;
+            }
+
+            .box-4:hover{
+                opacity: .5;
+            }
+
+            .box-5{
+                padding-top: 4rem;
+                padding-right: 3rem;
+                padding-bottom: 2rem;
+                padding-left: 1rem;
+                background-color: #ede7f6;
+                border-left: 4px solid #64dd17;
+                border-bottom: 6px ridge #0091ea;
+                border-right: 8px dashed #6200ea;
+                border-top: 10px groove #d50000;
+                color: #6200ea;
+                margin-top: 4rem;
+                margin-right: 6rem;
+                margin-bottom: 8rem;
+                margin-left: 10rem;
+            }
+
+            .box-6{
+                background-image: url("./crypto-anarchism.gif");
+                background-position: center;
+                background-size: 50px;
+                background-repeat: repeat;
+                color: #fff;
+                border: 2px solid #ffff00;
+            }
+
+            .box-7{
+                background-image: url("./crypto-anarchism.gif");
+                background-position: center;
+                background-size: contain;
+                color: #fff;
+                border: 2px solid #ffff00;
+            }
+
+            .box-8{
+                color: #8b0000;
+                border-color: #8b0000;
+                background-image: linear-gradient(#8b000040, #8b000005);
+            }
+
+            .box-9{
+                color: #86008b;
+                border-color: #86008b;
+                background-image: linear-gradient(to right, #86008b90, #86008b70 20%, #86008b50 40%, #86008b30 60%, #86008b10 80%, #86008b00);
+            }
+
+            .box-10{
+                color: #8b00ff;
+                border-color: #8b00ff;
+                background-image: radial-gradient(ellipse, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+                box-shadow: 2px 2px 4px 0 #8b00ff;
+            }
+
+            .box-11{
+                color: #0000ff;
+                border-color: #0000ff;
+                background-color: #fff;
+                box-shadow: 0 0 50px 15px #0000ff inset;
+            }
+
+            .box-12{
+                margin-bottom: 4rem;
+                border-radius: 0;
+                border-color: #000;
+                background-color: #fff;
+                box-shadow: 25px 25px 0 0 #000;
+                transition: box-shadow .75s ease, text-shadow .75s ease;
+                text-shadow: 20px 20px #000;
+            }
+
+            .box-12:hover{
+                box-shadow: 5px 5px 0 0 #000;
+                text-shadow: 2.5px 2.5px #000;
+            }
+
+            .box-13{
+                margin-bottom: 12rem;
+                background-color: #fff;
+                border: 1px solid #000;
+                box-shadow: 150px 150px 0 #000;
+                box-sizing: border-box;
+                transition: box-shadow 1s ease, text-shadow .5s ease;
+                border-radius: 0;
+                color: #000;
+                text-shadow: 1px 1px 0 #212121, 2px 2px 0 #424242, 3px 3px 0 #616161, 4px 4px 0 #757575, 5px 5px 0 #9e9e9e, 6px 6px 0 #bdbdbd, 7px 7px 0 #e0e0e0, 8px 8px 0 #eeeeee, 9px 9px 0 #f5f5f5, 10px 10px 0 #fff;
+            }
+
+            .box-13:hover{
+                box-shadow: 150px 0 transparent;
+                text-shadow: 0 0 0 transparent;
+            }
+
+            .box-14{
+                margin-bottom: 12rem;
+                background-color: #fff;
+                border: 1px solid #000;
+                box-shadow: 75px 75px 0 #000;
+                box-sizing: border-box;
+                transition: box-shadow .75s ease, text-shadow .75s ease;
+                border-radius: 0;
+                color: transparent;
+            }
+
+            .box-14:hover{
+                box-shadow: none;
+                text-shadow: 0 0 0 #000;
+            }
+
+            .box-15{
+                width: 300px;
+                height: 300px;
+                border-color: #c6ff00;
+                color: #c6ff00;
+                background-color: #c6ff0020;
+            }
+
+            .box-15-1{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                border-color: #00E1FF;
+                color: #00E1FF;
+                background-color: #00E1FF20;
+            }
+
+            .box-16{
+                width: 400px;
+                height: 400px;
+                position: relative;
+                border-color: #FF9900;
+                color: #FF9900;
+                background-color: #FF990020;
+            }
+
+            .box-16-1{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 75px;
+                height: 75px;
+                border-color: #00FF2A;
+                color: #00FF2A;
+                background-color: #00FF2A20;
+            }
+
+            .box-17{
+                border-color: #4B0082;
+                color: #4B0082;
+                background-color: #4B008220;
+                position: absolute;
+                top: calc(50% - 75px); /*half the screen minus half the size of the element*/
+                right: calc(50% - 75px); /*half the screen minus half the size of the element*/
+            }
+
+            .box-18{
+                width: 400px;
+                height: auto;
+                padding: 2rem;
+                flex-direction: column;
+                color: #7E5937;
+                border-color: #7E5937;
+                background-color: #fff;
+            }
+
+            .box-18 p{
+                margin: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box box-1">Box-1</div>
+        <div class="box box-2">Box-2</div>
+        <div class="box box-3">Box-3</div>
+        <div class="box box-4">Box-4</div>
+        <div class="box box-5">Box-5</div>
+        <div class="box box-6">Box-6</div>
+        <div class="box box-7">Box-7</div>
+        <div class="box box-8">Box-8</div>
+        <div class="box box-9">Box-9</div>
+        <div class="box box-10">Box-10</div>
+        <div class="box box-11">Box-11</div>
+        <div class="box box-12">Box-12</div>
+        <div class="box box-13">Box-13</div>
+        <div class="box box-14">Box-14</div>
+        <div class="box box-15">
+            Box-15
+            <div class="box box-15-1">Box-15-1</div>
+        </div>
+        <div class="box box-16">
+            Box-16
+            <div class="box box-16-1">Box-16-1</div>
+        </div>
+        <div class="box box-17">Box-17</div>
+        <div class="box box-18">
+            <p>Hello world, it's the Box-17 <img style="float: right" width="20px" height="20px" src="./box.jpg" alt="Hi, i'm a box!">, and i love CSS3, i'm using float right on image!</p>
+            <p>Hello world, it's the Box-17 <img style="float: left" width="20px" height="20px" src="./box.jpg" alt="Hi, i'm a box!">, and i love CSS3, i'm using float left on image!</p>
+            <p>Hello world, it's the Box-17 <img style="float: initial" width="20px" height="20px" src="./box.jpg" alt="Hi, i'm a box!">, and i love CSS3, i'm using float initial on image!</p>
+            <p><img style="float: right" width="20px" height="20px" src="./box.jpg" alt="Hi, i'm a box!"> Hello world, it's the Box-17, and i love CSS3, i'm using float right on image!</p>
+            <p><img style="float: left" width="20px" height="20px" src="./box.jpg" alt="Hi, i'm a box!"> Hello world, it's the Box-17, and i love CSS3, i'm using float left on image!</p>
+            <p><img style="float: initial" width="20px" height="20px" src="./box.jpg" alt="Hi, i'm a box!"> Hello world, it's the Box-17, and i love CSS3, i'm using float initial on image!</p>
+            <p>Hello world, it's the Box-17, and i love CSS3, i'm using float right on image! <img style="float: right" width="20px" height="20px" src="./box.jpg" alt="Hi, i'm a box!"></p>
+            <p>Hello world, it's the Box-17, and i love CSS3, i'm using float left on image! <img style="float: left" width="20px" height="20px" src="./box.jpg" alt="Hi, i'm a box!"></p>
+            <p>Hello world, it's the Box-17, and i love CSS3, i'm using float initial on image! <img style="float: initial" width="20px" height="20px" src="./box.jpg" alt="Hi, i'm a box!"></p>
+        </div>
+    </body>
+</html>

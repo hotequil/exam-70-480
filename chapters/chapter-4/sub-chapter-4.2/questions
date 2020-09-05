@@ -1,0 +1,28 @@
+1. Which of the following is not a valid way to alter the size of an element?
+A. div { height: 50px; width: 50%; }
+B. div { height: 50px; width: 50px; }
+C. div { height: 50cm; width: 50px ;
+D. div { height: 50ft; width: 50ft; } X
+
+2. Which of the following will successfully style the border of a div element?
+A. border-top: 5px dotted blue; border-right: 5px solid green; border-left: 3px dashed red; border-bottom: 10px double black; X
+B. border-sides: 5px solid green;
+C. border-all: 1px solid black;
+D. border: full red;
+
+3. When looking from the outside edge of an HTML element and moving to the inside edge, what order does the padding, margin, and border occur in?
+A. padding, border, margin
+B. margin, border, padding X
+C. border, padding, margin
+D. margin, padding, border
+
+4. Which of the following statements will apply a box shadow to the right and bottom edge of a div element?
+A. box-shadow: gray 5px 5px; X
+B. box-shadow: gray -5px 5px;
+C. box-shadow: gray 5px -5px;
+D. box-shadow: gray -5px -5px;
+
+5. Which of the following will place an element relative to the browser window?
+A. absolute
+B. fixed X
+C. relative
