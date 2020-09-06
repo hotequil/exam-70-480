@@ -1,0 +1,17 @@
+1. Which of the following layouts is based on columns and rows?
+A. flexbox
+B. multi-column
+C. grid layout X
+D. exclusions
+
+2. Which of the following is false about a flexbox layout?
+A. The direction of the elements in a flexbox can be controlled with the flex-direction property.
+B. The elements layout can be configured along the layout axis using the flex-pack property.
+C. Elements in a flexbox are called flexbox items.
+D. Elements in a flexbox can be set into rows and columns. X
+
+3. Which of the following property values for wrap-flow will allow the text to wrap along both sides of an element?
+A. both X
+B. all
+C. left and right
+D. cross
