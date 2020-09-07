@@ -1,0 +1,17 @@
+1. Which of the following statements will hide an element but keep its space in the overall flow?
+A. display: none; X
+B. visibility: hidden;
+C. display: inline;
+D. visibility: visible;
+
+2. Media queries are best suited for what purpose?
+A. Setting the priority of style sheet references in a webpage
+B. Creating a responsive user interface based on the screen size of the view port X
+C. Modifying the view port to properly fit the content of the page
+D. Connecting to third-party style sheets to alter the layout
+
+3. Which of the following transition-timing-function properties makes the transition start slow, speed up, then end slow?
+A. ease X
+B. ease-in
+C. ease-out
+D. ease-in-out

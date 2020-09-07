@@ -1,0 +1,16 @@
+.container-grid{
+    margin-top: 2rem;
+}
+
+.grid-with-media-queries{
+    padding: 1rem;
+    border: 1px solid #000;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: .5rem;
+}
+
+.grid-with-media-queries > div{
+    height: 100px;
+    background-color: #9fff55;
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Create an animated and adaptive UI</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./index.css">
+        <link rel="stylesheet" href="./desktop.css" media="all and (max-width: 1000px)">
+        <link rel="stylesheet" href="./tablet.css" media="all and (max-width: 600px)">
+        <link rel="stylesheet" href="./mobile.css" media="all and (max-width: 400px)">
+        <style>
+            html{
+                font-size: 16px;
+            }
+
+            body {
+                margin: 2rem;
+            }
+
+            .box{
+                width: 150px;
+                height: 150px;
+                border: 1px solid #000;
+            }
+
+            .box-1{
+                background-color: #0091ea;
+                transition: width .25s ease-in-out 0s, background-color 1s linear .25s; /*property-name, duration, timing-function, delay*/
+            }
+
+            .box-1:hover{
+                width: 300px;
+                background-color: #ffd700;
+            }
+
+            .box-2{
+                margin-top: 2rem;
+                background-color: #00FF2A;
+                transition: height 1s cubic-bezier(.5, 1.25, .65, -0.35) 0s; /*https://cubic-bezier.com*/
+            }
+
+            .box-2:hover{
+                height: 500px;
+            }
+
+            .box-3{
+                margin-top: 4rem;
+                background-color: #f00;
+                /*transform: rotateX(80deg) rotateY(80deg) rotateZ(80deg); or:*/
+                transform: rotate3d(1, 1, 1, 80deg); /*https://developer.mozilla.org/pt-BR/docs/Web/CSS/transform-function/rotate3d*/
+            }
+
+            .my-title h1 {
+                margin: 4rem 0 0 0;
+                transition: color .5s;
+            }
+
+            @media all and (min-width: 1201px){
+                .my-title h1{
+                    color: #ff0;
+                }
+            }
+
+            @media all and (max-width: 1200px){
+                .my-title h1{
+                    color: #f00;
+                }
+            }
+
+            @media all and (max-width: 1000px){
+                .my-title h1 {
+                    color: #f0f;
+                }
+            }
+
+            @media all and (max-width: 800px){
+                .my-title h1 {
+                    color: #00f;
+                }
+            }
+
+            .hide-elements{
+                margin-top: 2rem;
+            }
+
+            .hide-elements h2{
+                margin: 0 0 1rem 0;
+            }
+
+            .hide-elements .container-hide-elements{
+                margin-top: 1rem;
+            }
+
+            .hide-elements .container-hide-elements .with-display{
+                margin: .5rem;
+                display: inline-block;
+                width: 300px;
+                height: 300px;
+                background-color: #ffe0b2;
+                border: 1px solid #000
+            }
+
+            .hide-elements .container-hide-elements .with-visibility{
+                margin: .5rem;
+                display: inline-block;
+                width: 300px;
+                height: 300px;
+                background-color: #ffe0b2;
+                border: 1px solid #000
+            }
+        </style>
+        <script>
+            window.onload = () => {
+                const hideOrShowAllElementsButton = document.querySelector(".hide-show-all-elements");
+                const disableButtonHideOrShowAllElementsButton = document.querySelector(".disable-button-hide-show-all-elements");
+                const containerWithDisplay = document.querySelector(".with-display");
+                const containerWithVisibility = document.querySelector(".with-visibility");
+
+                disableButtonHideOrShowAllElementsButton.onclick = () => hideOrShowAllElementsButton.disabled = !hideOrShowAllElementsButton.disabled
+                hideOrShowAllElementsButton.onclick = () => {
+                    containerWithDisplay.style.display == "none" ? containerWithDisplay.style.display = "" : containerWithDisplay.style.display = "none";
+                    containerWithVisibility.style.visibility == "hidden" ? containerWithVisibility.style.visibility = "" : containerWithVisibility .style.visibility = "hidden";
+                };
+            };
+        </script>
+    </head>
+    <body>
+        <div class="box box-1">Box-1</div>
+        <div class="box box-2">Box-2</div>
+        <div class="box box-3">Box-3</div>
+        <div class="my-title"><h1>Hello world (change the screen size to my font size change)</h1></div>
+        <div class="container-grid">
+            <h2>Grid with media queries:</h2>
+            <div class="grid-with-media-queries">
+                <div>Item-1</div>
+                <div>Item-2</div>
+                <div>Item-3</div>
+                <div>Item-4</div>
+                <div>Item-5</div>
+                <div>Item-6</div>
+            </div>
+        </div>
+        <div class="hide-elements">
+            <h2>Hide/show elements</h2>
+            <button class="hide-show-all-elements">hide/show all elements</button>
+            <button class="disable-button-hide-show-all-elements">disable button hide all elements</button>
+            <div class="container-hide-elements">
+                <span class="with-display">With prop display</span>
+                <span class="with-visibility">With prop visibility</span>
+            </div>
+        </div>
+    </body>
+</html>
