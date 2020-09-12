@@ -1,0 +1,17 @@
+1. Which one of the following is a CSS class selector?
+A. .code X
+B. #code
+C. div[code]
+D. :code
+
+2. Which one of the following is an attribute selector?
+A. .required
+B. #required
+C. input[required] X
+D. :required
+
+3. Which of the following statements would alter the style of an anchor element when the mouse is moved over it?
+A. a:link
+B. a:mouseover
+C. a:beforeclick
+D. a:hover X
