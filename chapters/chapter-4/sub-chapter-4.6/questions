@@ -1,0 +1,81 @@
+<html>
+    <body>
+        <div>
+            <hgroup>
+                <h1></h1>
+                <h2></h2>
+            </hgroup>
+        </div>
+        <div>
+            <section>
+                <article>
+                    <h1></h1>
+                    <p></p>
+                    <p></p>
+                </article>
+                <article>
+                    <h1></h1>
+                    <p></p>
+                    <aside></aside>
+                    <p></p>
+                </article>
+            </section>
+        </div>
+        <div>
+            <footer>
+                <p></p>
+                <p></p>
+            </footer>
+        </div>
+    </body>
+</html>
+
+1. Referencing the HTML listing, how would you style only the first paragraph inside the footer element to have a smaller font size?
+A. footer p:first-child {
+    font-size: x-small;
+} X
+B. footer p.first-child {
+    font-size: x-small;
+}
+C. Footer:p:first-child {
+    font-size: x-small;
+}
+D. Footer=>p,first-child {
+    font-size: x-small;
+}
+
+2. Referencing the HTML listing, how would you apply a new font to all the H1 elements? In addition, the <h1> elements in an article should be italic.
+A. h1 {
+    font-family: ‘Courier New’;
+    article h1 {
+        font-style:italic;
+    }
+}
+B. h1 {
+    font-family: ‘Courier New’;
+}
+article h1 {
+    font-style:italic;
+} X
+C. h1 {
+    font-family: ‘Courier New’;
+    font-style:italic;
+}
+article h1 {
+    font-style:italic;
+}
+D. h1 {
+    font-family: ‘Courier New’;
+}
+article, h1 {
+    font-style:italic;
+}
+
+3. Referencing the preceding HTML listing, write the CSS code to apply a border to the aside element that is 100 pixels high and 50 pixels wide. In addition, provide a shadow effect and slightly skew the element to the right 5 degrees.
+aside{
+    border: 1px solid #000;
+    height: 100px;
+    width: 50px;
+    box-shadow: 2px 2px 4px #ddd;
+    transform: rotate(5deg);
+}

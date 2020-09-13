@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Structure a CSS file by using CSS selectors</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{
+                font-family: Arial;
+            }
+
+            .box{
+                border-radius: 4px;
+                border-width: 1px;
+                border-style: solid;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+            }
+
+            .box-title{
+                font-family: monospace !important;
+                position: absolute;
+                top: .25rem;
+                left: .25rem;
+                color: #000;
+                text-transform: uppercase;
+            }
+
+            body div.parent-box{
+                width: 400px;
+                height: 400px;
+                border-color: #00FF2A;
+                background-color: #00FF2A20;
+                box-shadow: 2px 2px 6px #ccc;
+            }
+
+            .children-box{
+                width: 200px;
+                height: 200px;
+                border-color: #86008b;
+                background-color: #86008b20;
+                box-shadow: inherit;
+            }
+
+            .children-box-title{
+                font-family: Arial;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box parent-box">
+            <span class="box-title">Parent box</span>
+            <div class="box children-box">
+                <span class="box-title children-box-title">Children box</span>
+            </div>
+        </div>
+    </body>
+</html>
